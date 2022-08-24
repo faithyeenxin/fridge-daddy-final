@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Typography, Paper } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-
 import Image from "/images/full_peach.jpg";
 
 const backgroundSx = {
@@ -10,9 +9,8 @@ const backgroundSx = {
   backgroundImage: `url(${Image})`,
   backgroundSize: "cover",
   backgroundPosition: "center center",
-
+  backgroundAttachment: "fixed",
   m: -1,
-  borderRadius: 0,
 };
 
 const buttonSx = {
@@ -32,7 +30,7 @@ const buttonSx = {
 
 const HeroSection = () => {
   return (
-    <Paper sx={backgroundSx}>
+    <Box sx={backgroundSx}>
       <div
         style={{
           marginTop: 2,
@@ -63,7 +61,7 @@ const HeroSection = () => {
           </Link>
         </Button>
       </div>
-    </Paper>
+    </Box>
   );
 };
 
