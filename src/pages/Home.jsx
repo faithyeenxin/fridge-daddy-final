@@ -1,11 +1,11 @@
 import React from "react";
 import HomeLists from "../components/display/HomeLists";
-import SearchForm from "../components/forms/SearchForm";
+import AddItemForm from "../components/forms/addItem/AddItemForm";
 const Home = () => {
   return (
     <>
       <div>
-        <SearchForm />
+        <AddItemForm />
         <HomeLists />
       </div>
     </>

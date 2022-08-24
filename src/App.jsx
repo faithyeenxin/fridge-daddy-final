@@ -8,6 +8,7 @@ import Baddies from "./pages/Baddies";
 import Search from "./pages/Search";
 import User from "./pages/User";
 import Recipes from "./pages/Recipes";
+import AddCategory from "./pages/AddCategory";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/evergreen" element={<Evergreen />} />
           <Route path="/baddies" element={<Baddies />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/category" element={<AddCategory />} />
           <Route path="/handbook" element={<Start />} />
           <Route path="/user" element={<User />} />
           <Route path="/recipes" element={<Recipes />} />

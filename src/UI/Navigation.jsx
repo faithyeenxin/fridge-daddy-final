@@ -20,6 +20,8 @@ const navItems = [
   "Evergreen",
   "Baddies",
   "Recipes",
+  "Search",
+  "Category",
   "Handbook",
   "User",
   "Log Out",
