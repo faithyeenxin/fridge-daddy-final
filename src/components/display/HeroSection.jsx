@@ -9,7 +9,7 @@ const backgroundSx = {
   backgroundImage: `url(${Image})`,
   backgroundSize: "cover",
   backgroundPosition: "center center",
-  backgroundAttachment: "fixed",
+  // backgroundAttachment: "fixed",
   m: -1,
 };
 
