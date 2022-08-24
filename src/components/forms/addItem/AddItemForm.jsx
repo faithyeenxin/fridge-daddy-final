@@ -31,7 +31,7 @@ const AddItemForm = () => {
         backgroundImage: `url(${Image})`,
         backgroundSize: "cover",
         backgroundPosition: "center center",
-        backgroundAttachment: "fixed",
+
         borderRadius: "2%",
       }}
     >
