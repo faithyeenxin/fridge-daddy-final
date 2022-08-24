@@ -3,6 +3,7 @@ import {
   Container,
   Grid,
   MenuItem,
+  Paper,
   TextField,
   Typography,
 } from "@mui/material";
@@ -22,7 +23,7 @@ const buttonSx = {
 };
 const SearchForm = () => {
   return (
-    <Container
+    <Paper
       sx={{
         padding: "8vh 0vh",
         backgroundImage: `url(${Image})`,
@@ -54,25 +55,25 @@ const SearchForm = () => {
           >
             <TextField
               required
-              variant="outlined"
+              variant="filled"
               label="food/ingredient"
               size="small"
               margin="normal"
-              sx={{ padding: "0 10px" }}
+              sx={{ margin: "10px" }}
             />
             <TextField
               required
-              variant="outlined"
+              variant="filled"
               label="category"
               select
               size="small"
-              sx={{ width: "200px", padding: "0 10px" }}
+              sx={{ width: "200px", margin: "10px" }}
               margin="normal"
             >
               <MenuItem>Meats</MenuItem>
               <MenuItem>Fruits</MenuItem>
               <MenuItem>Vegetable</MenuItem>
-              <MenuItem>+Add</MenuItem>
+              <MenuItem>+ Add</MenuItem>
             </TextField>
           </Grid>
           <Grid
@@ -86,27 +87,27 @@ const SearchForm = () => {
             }}
           >
             <TextField
-              variant="outlined"
+              variant="filled"
               label="quantity"
               size="small"
               margin="normal"
-              sx={{ padding: "0 10px" }}
+              sx={{ margin: "10px" }}
             />
             <TextField
               required
-              variant="outlined"
+              vvariant="filled"
               label="purchase date"
               size="small"
               margin="normal"
-              sx={{ padding: "0 10px" }}
+              sx={{ margin: "10px" }}
             />
             <TextField
               required
-              variant="outlined"
+              variant="filled"
               label="expiration date"
               size="small"
               margin="normal"
-              sx={{ padding: "0 10px" }}
+              sx={{ margin: "10px" }}
             />
           </Grid>
         </Grid>
@@ -114,7 +115,7 @@ const SearchForm = () => {
           Submit
         </Button>
       </form>
-    </Container>
+    </Paper>
   );
 };
 
