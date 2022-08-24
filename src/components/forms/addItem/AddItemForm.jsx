@@ -47,7 +47,8 @@ const AddItemForm = () => {
         <Grid container>
           <Grid
             item
-            xs={4}
+            xs={12}
+            md={4}
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -64,7 +65,8 @@ const AddItemForm = () => {
           </Grid>
           <Grid
             item
-            xs={4}
+            xs={12}
+            md={4}
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -81,7 +83,8 @@ const AddItemForm = () => {
 
           <Grid
             item
-            xs={4}
+            xs={12}
+            md={4}
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -95,14 +98,25 @@ const AddItemForm = () => {
           <Grid
             item
             xs={12}
+            md={6}
             sx={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              padding: "3",
             }}
           >
             <AddDateForm name="Purchase Date" />
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <AddDateForm name="Expiration Date" />
           </Grid>
         </Grid>

@@ -12,9 +12,9 @@ const AddCategoryForm = () => {
         label="category"
         select
         size="small"
-        sx={{ width: "300px", margin: "10px" }}
+        sx={{ margin: "10px" }}
         margin="normal"
-        helperText="This allows us to suggest an expiration date!"
+        helperText="We'll suggest an expiration date!"
       >
         <MenuItem value={"Fruits"}>Fruits</MenuItem>
         <MenuItem value={"Meats"}>Meats</MenuItem>
