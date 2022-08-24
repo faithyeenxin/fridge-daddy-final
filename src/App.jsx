@@ -21,7 +21,6 @@ function App() {
           <Route path="/baddies" element={<Baddies />} />
           <Route path="/search" element={<Search />} />
           <Route path="/category" element={<AddCategory />} />
-          <Route path="/handbook" element={<Start />} />
           <Route path="/user" element={<User />} />
           <Route path="/recipes" element={<Recipes />} />
         </Route>

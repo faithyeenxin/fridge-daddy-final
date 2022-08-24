@@ -22,7 +22,6 @@ const navItems = [
   "Recipes",
   "Search",
   "Category",
-  "Handbook",
   "User",
   "Log Out",
 ];
@@ -75,6 +74,9 @@ const Navigation = (props) => {
         >
           <LunchDiningIcon sx={{ mr: 1 }} />
           <Typography
+            onClick={() => {
+              navigate("/");
+            }}
             sx={{
               fontSize: 25,
               flexGrow: 1,
