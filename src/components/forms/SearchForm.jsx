@@ -41,11 +41,11 @@ const SearchForm = () => {
           sx={{ color: "white", margin: "5%" }}
           gutterBottom
         >
-          Looking for an item?
+          Looking for something?
         </Typography>
         <Container sx={{ display: "flex", justifyContent: "center" }}>
           <TextField
-            sx={{ width: "40%" }}
+            fullWidth
             variant="filled"
             label="please enter a single word"
             size="small"

@@ -22,26 +22,24 @@ const SearchContentSection = () => {
         <Grid
           item
           s={12}
-          md={4}
+          md={5}
           sx={{
             margin: "2%",
           }}
         >
-          <Card sx={{ width: "100%", height: "100%" }}>
-            <Typography
-              variant="h3"
-              sx={{
-                textAlign: "center",
-              }}
-            >
-              Possibly an API to show details of the items clicked can be here
-            </Typography>
+          <Card>
+            <CardHeader
+              title="Categories we have found"
+              subheader="Psssttt! You're able to remove categories here"
+              sx={{ color: "#e66351" }}
+            />
+            <ScrollableList />
           </Card>
         </Grid>
         <Grid
           item
           s={12}
-          md={7}
+          md={5}
           sx={{
             margin: "2%",
           }}
