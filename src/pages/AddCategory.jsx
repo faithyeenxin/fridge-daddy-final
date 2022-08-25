@@ -1,9 +1,12 @@
 import React from "react";
+import CategoryDisplaySection from "../components/display/category/CategoryDisplaySection";
+import CategoryForm from "../components/forms/CategoryForm";
 
 const AddCategory = () => {
   return (
     <>
-      <h1>Add Category are here</h1>
+      <CategoryForm />
+      <CategoryDisplaySection />
     </>
   );
 };

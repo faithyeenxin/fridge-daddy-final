@@ -46,7 +46,7 @@ const BaddiesContentSection = () => {
               subheader="scroll through list to view all items"
               sx={{ color: "#f93f23" }}
             />
-            <ScrollableList />
+            <ScrollableList name={"Rotten"} />
           </Card>
         </Grid>
         <Grid
@@ -63,7 +63,7 @@ const BaddiesContentSection = () => {
               subheader="scroll through list to view all items"
               sx={{ color: "#f93f23" }}
             />
-            <ScrollableList />
+            <ScrollableList name={"Trashed"} />
           </Card>
         </Grid>
       </Grid>

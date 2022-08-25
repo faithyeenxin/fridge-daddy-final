@@ -46,12 +46,12 @@ const ItemForm = () => {
         >
           Add an Item!
         </Typography>
-        <Grid container>
+        <Grid container sx={{ padding: "0% 10%" }}>
           <AddFoodForm />
           <AddQuantityForm />
           <AddCategoryForm />
         </Grid>
-        <Grid container>
+        <Grid container sx={{ padding: "0% 20%" }}>
           <AddDateForm name="Purchase Date" />
           <AddDateForm name="Expiration Date" />
         </Grid>
