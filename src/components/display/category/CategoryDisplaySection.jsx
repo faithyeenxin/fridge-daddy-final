@@ -1,7 +1,7 @@
-import { Card, CardHeader, Container, Grid, Typography } from "@mui/material";
+import { Card, Container, Grid, Typography } from "@mui/material";
 import React from "react";
-import ScrollableList from "../../list/ScrollableList";
-import CategoryCard from "./CategoryCard";
+import CategoryCardDeck from "./CategoryCardDeck";
+import CategoryTable from "./CategoryTable";
 
 const CategoryDisplaySection = () => {
   return (
@@ -12,14 +12,25 @@ const CategoryDisplaySection = () => {
         marginBottom: "2%",
       }}
     >
-      <Grid container justifyContent="center">
-        <CategoryCard />
-        <CategoryCard />
-        <CategoryCard />
-        <CategoryCard />
-        <CategoryCard />
-        <CategoryCard />
-      </Grid>
+      <Typography
+        align="center"
+        variant="subtitle1"
+        sx={{ color: "#455a40", fontStyle: "italic" }}
+      >
+        Last 4 items added
+      </Typography>
+
+      <CategoryCardDeck />
+      <Container sx={{ marginTop: "30px" }}>
+        <Typography
+          align="center"
+          variant="subtitle1"
+          sx={{ color: "#455a40", fontStyle: "italic" }}
+        >
+          The table is interactive!
+        </Typography>
+        <CategoryTable />
+      </Container>
     </Container>
   );
 };

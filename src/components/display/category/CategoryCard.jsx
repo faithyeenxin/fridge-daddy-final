@@ -9,8 +9,8 @@ const CategoryCard = () => {
   return (
     <Grid
       item
-      s={12}
-      md={3}
+      s={4}
+      md={2.5}
       sx={{
         margin: "2%",
       }}

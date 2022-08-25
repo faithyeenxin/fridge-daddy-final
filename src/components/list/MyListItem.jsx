@@ -22,7 +22,7 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 function generate(element) {
-  return [0, 1, 2, 3, 4, 5].map((value) =>
+  return [0, 1, 2, 3, 4].map((value) =>
     React.cloneElement(element, {
       key: value,
     })
@@ -51,7 +51,7 @@ const MyListItem = ({ name, descrip }) => {
           <List
             size="lg"
             variant="outlined"
-            sx={{ borderRadius: "sm", minWidth: 300, minHeight: 450 }}
+            sx={{ borderRadius: "sm", minWidth: 300, minHeight: 350 }}
           >
             {generate(
               <ListItem
