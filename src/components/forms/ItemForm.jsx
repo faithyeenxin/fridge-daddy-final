@@ -11,7 +11,7 @@ import AddCategoryForm from "./itemForm/AddCategoryForm";
 import AddDateForm from "./itemForm/AddDateForm";
 import AddFoodForm from "./itemForm/AddFoodForm";
 import AddQuantityForm from "./itemForm/AddQuantityForm";
-import Image from "/images/full_peach_opacity.png";
+import Image from "/images/full_peach_opacity.jpg";
 
 const buttonSx = {
   backgroundColor: "#f93f23",

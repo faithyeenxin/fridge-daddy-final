@@ -1,6 +1,6 @@
 import { Container, Paper, Typography } from "@mui/material";
 import React from "react";
-import Image from "/images/melon_opacity.png";
+import Image from "/images/melon_opacity.jpg";
 
 const RecipeTopSection = () => {
   return (

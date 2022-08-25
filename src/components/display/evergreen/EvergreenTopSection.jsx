@@ -1,6 +1,6 @@
 import { Container, Paper, Typography } from "@mui/material";
 import React from "react";
-import Image from "/images/avocado_opacity.png";
+import Image from "/images/avocado_opacity.jpg";
 
 const EvergreenTopSection = () => {
   return (
