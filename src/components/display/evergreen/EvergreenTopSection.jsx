@@ -18,7 +18,7 @@ const EvergreenTopSection = () => {
   return (
     <Paper
       sx={{
-        padding: "20vh 0vh 20vh 0vh",
+        padding: "15vh 0vh 15vh 0vh",
         backgroundImage: `url(${Image})`,
         backgroundSize: "cover",
         backgroundPosition: "center center",
