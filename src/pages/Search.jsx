@@ -1,8 +1,11 @@
 import React from "react";
+import SearchContentSection from "../components/display/search/SearchContentSection";
+import SearchForm from "../components/forms/SearchForm";
 const Search = () => {
   return (
     <>
-      <h1>Search are here</h1>
+      <SearchForm />
+      <SearchContentSection />
     </>
   );
 };

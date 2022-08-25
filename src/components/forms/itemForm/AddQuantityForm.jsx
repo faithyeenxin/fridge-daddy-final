@@ -20,6 +20,7 @@ const AddQuantityForm = () => {
       }}
     >
       <TextField
+        type="number"
         variant="filled"
         label="quantity"
         size="small"
