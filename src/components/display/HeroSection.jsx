@@ -1,7 +1,8 @@
 import { Button, Container, Paper, Typography } from "@mui/material";
 import React from "react";
-import Image from "/images/full_peach.jpg";
+import Image from "/images/originals/full_peach.jpg";
 import { Link } from "react-router-dom";
+
 const buttonSx = {
   backgroundColor: "#f93f23",
   color: "white",
