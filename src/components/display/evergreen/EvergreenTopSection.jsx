@@ -2,18 +2,6 @@ import { Container, Paper, Typography } from "@mui/material";
 import React from "react";
 import Image from "/images/avocado_opacity.png";
 
-const buttonSx = {
-  backgroundColor: "#f93f23",
-  color: "white",
-  margin: "3% auto",
-  display: "flex",
-  fontWeight: 700,
-  fontSize: 12,
-  letterSpacing: 1,
-  borderRadius: 2,
-  padding: "0.5rem 1.5rem",
-};
-
 const EvergreenTopSection = () => {
   return (
     <Paper

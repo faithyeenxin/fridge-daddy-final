@@ -1,8 +1,9 @@
 import React from "react";
+import BaddiesTopSection from "../components/display/baddies/BaddiesTopSection";
 const Baddies = () => {
   return (
     <>
-      <h1>Baddies are here</h1>
+      <BaddiesTopSection />
     </>
   );
 };

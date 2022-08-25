@@ -15,7 +15,7 @@ import SearchIcon from "@mui/icons-material/Search";
 const containsText = (text, searchText) =>
   text.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
 
-const allOptions = ["Fruit", "Meat", "Vegetable", "Fish", "+ Add Category"];
+const allOptions = ["+ Add Category", "Fruit", "Meat", "Vegetable", "Fish"];
 
 const AddCategoryForm = () => {
   const navigate = useNavigate();

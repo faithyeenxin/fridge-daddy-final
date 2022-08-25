@@ -1,8 +1,9 @@
 import React from "react";
+import RecipeTopSection from "../components/display/recipes/RecipeTopSection";
 const Recipes = () => {
   return (
     <>
-      <h1>Recipes are here</h1>
+      <RecipeTopSection />
     </>
   );
 };
