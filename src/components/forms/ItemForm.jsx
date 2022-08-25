@@ -25,7 +25,7 @@ const buttonSx = {
   padding: "0.5rem 1.5rem",
 };
 
-const AddItemForm = () => {
+const ItemForm = () => {
   return (
     <Paper
       sx={{
@@ -63,4 +63,4 @@ const AddItemForm = () => {
   );
 };
 
-export default AddItemForm;
+export default ItemForm;
