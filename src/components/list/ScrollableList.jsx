@@ -20,7 +20,7 @@ const ScrollableList = ({ name }) => {
   return (
     <Paper
       style={{
-        minWidth: 400,
+        minWidth: 350,
         maxHeight: 500,
         overflow: "auto",
       }}
@@ -30,7 +30,7 @@ const ScrollableList = ({ name }) => {
         variant="outlined"
         sx={{
           borderRadius: "sm",
-          minWidth: 400,
+          minWidth: 350,
           minHeight: 450,
         }}
       >
