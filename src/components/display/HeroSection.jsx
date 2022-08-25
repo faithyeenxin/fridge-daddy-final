@@ -18,7 +18,7 @@ const HeroSection = () => {
   return (
     <Paper
       sx={{
-        padding: "8vh 0vh",
+        padding: "15vh 0vh 10vh 0vh",
         backgroundImage: `url(${Image})`,
         backgroundSize: "cover",
         backgroundPosition: "center center",
@@ -37,7 +37,7 @@ const HeroSection = () => {
         </Typography>
         <Typography
           variant="h6"
-          sx={{ color: "333333" }}
+          sx={{ color: "333333", padding: "1vh 0vh" }}
           align="center"
           gutterBottom
         >
