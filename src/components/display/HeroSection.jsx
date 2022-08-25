@@ -1,21 +1,11 @@
+import { Button, Container, Paper, Typography } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button, Typography } from "@mui/material";
-import { Box } from "@mui/system";
 import Image from "/images/full_peach.jpg";
-
-const backgroundSx = {
-  height: 550,
-  backgroundImage: `url(${Image})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center center",
-  // backgroundAttachment: "fixed",
-  m: -1,
-};
-
+import { Link } from "react-router-dom";
 const buttonSx = {
   backgroundColor: "#f93f23",
-  margin: "0 auto",
+  color: "white",
+  margin: "3% auto",
   display: "flex",
   fontWeight: 700,
   fontSize: 12,
@@ -24,19 +14,19 @@ const buttonSx = {
   padding: "0.5rem 1.5rem",
 };
 
-// style={{
-//     padding: "20vh 5vh 15vh 5vh",
-//   }}
-
 const HeroSection = () => {
   return (
-    <Box sx={backgroundSx}>
-      <div
-        style={{
-          marginTop: 2,
-          padding: "15vh 5vh",
-        }}
-      >
+    <Paper
+      sx={{
+        padding: "8vh 0vh",
+        backgroundImage: `url(${Image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+        // borderRadius: "2%",
+        margin: -1,
+      }}
+    >
+      <Container>
         <Typography
           variant="h3"
           sx={{ color: "333333" }}
@@ -45,7 +35,6 @@ const HeroSection = () => {
         >
           Ever felt stumped when there's only expired food in your fridge?
         </Typography>
-
         <Typography
           variant="h6"
           sx={{ color: "333333" }}
@@ -60,8 +49,8 @@ const HeroSection = () => {
             Get Started!
           </Link>
         </Button>
-      </div>
-    </Box>
+      </Container>
+    </Paper>
   );
 };
 
