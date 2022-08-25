@@ -24,7 +24,7 @@ const BaddiesTopSection = () => {
           BADDIES
         </Typography>
         <Typography
-          variant="h5"
+          variant="h4"
           sx={{ color: "#343928" }}
           align="center"
           gutterBottom
