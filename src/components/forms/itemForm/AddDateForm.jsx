@@ -1,38 +1,47 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { Grid } from "@mui/material";
-const AddDateForm = ({ name }) => {
-  const date = new window.Date();
-  const [value, setValue] = useState(date);
 
-  const handleChange = (newValue) => {
-    setValue(newValue);
-  };
+const AddDateForm = ({ name }) => {
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1; // this is because January is 0!
+  let yyyy = today.getFullYear();
+  let [minDate, setMinDate] = useState("");
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+
+  today = yyyy + "-" + mm + "-" + dd;
+
   return (
-    <LocalizationProvider dateAdapter={AdapterMoment}>
-      <DesktopDatePicker
+    <Grid
+      item
+      xs={12}
+      md={6}
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <TextField
+        fullWidth
+        id="date"
+        size="small"
         label={name}
-        inputFormat="DD MMM yyyy"
-        value={value}
-        onChange={handleChange}
-        renderInput={(params) => (
-          <Grid
-            item
-            xs={12}
-            md={6}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <TextField size="small" sx={{ margin: "10px" }} {...params} />
-          </Grid>
-        )}
+        type="date"
+        defaultValue={today}
+        InputLabelProps={{
+          shrink: true,
+        }}
+        sx={{ margin: "10px" }}
       />
-    </LocalizationProvider>
+    </Grid>
   );
 };
 
