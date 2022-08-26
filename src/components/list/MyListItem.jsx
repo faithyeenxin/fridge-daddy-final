@@ -21,13 +21,7 @@ import { Container } from "@mui/system";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-function generate(element) {
-  return [0, 1, 2, 3, 4].map((value) =>
-    React.cloneElement(element, {
-      key: value,
-    })
-  );
-}
+import mockUserData from "../testingFolder/mockUserData";
 
 const buttonSx = {
   margin: "0 auto",
@@ -39,6 +33,30 @@ const buttonSx = {
 
 const MyListItem = ({ name, descrip }) => {
   const navigate = useNavigate();
+
+  const extractedData = mockUserData[name.toLowerCase()].slice(0, 5);
+  const extractedList = extractedData.map((data) => {
+    console.log(data);
+    return (
+      <ListItem
+        secondaryAction={
+          <IconButton edge="end" aria-label="delete">
+            {name !== "Trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
+          </IconButton>
+        }
+      >
+        <ListItemAvatar>
+          <Avatar>
+            <FolderIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText
+          primary={data.item}
+          secondary={`Category: ${data.category}`}
+        />
+      </ListItem>
+    );
+  });
   return (
     <Grid item s={4} sx={{ margin: "2%" }}>
       <Card>
@@ -53,29 +71,7 @@ const MyListItem = ({ name, descrip }) => {
             variant="outlined"
             sx={{ borderRadius: "sm", minWidth: 300, minHeight: 350 }}
           >
-            {generate(
-              <ListItem
-                secondaryAction={
-                  <IconButton edge="end" aria-label="delete">
-                    {name !== "Trashed" ? (
-                      <DeleteIcon />
-                    ) : (
-                      <RestoreFromTrashIcon />
-                    )}
-                  </IconButton>
-                }
-              >
-                <ListItemAvatar>
-                  <Avatar>
-                    <FolderIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Single-line item"
-                  secondary="Secondary text"
-                />
-              </ListItem>
-            )}
+            {extractedList}
           </List>
         </CardContent>
         <CardActions>

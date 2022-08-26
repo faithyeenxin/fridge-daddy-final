@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./UI/Layout";
 import Start from "./pages/Start";
@@ -10,8 +10,11 @@ import User from "./pages/User";
 import Recipes from "./pages/Recipes";
 import AddCategory from "./pages/AddCategory";
 
+// import DataContextProvider from "./contextStore/DataContextProvider";
+
 function App() {
   return (
+    // <DataContextProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -26,6 +29,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    // </DataContextProvider>
 
     // <h1>hello world</h1>
   );

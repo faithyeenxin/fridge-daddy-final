@@ -52,7 +52,7 @@ const EvergreenContentSection = () => {
               subheader="scroll through list to view all items"
               sx={{ color: "#518655" }}
             />
-            <ScrollableList />
+            <ScrollableList name="evergreen" />
           </Card>
         </Grid>
       </Grid>

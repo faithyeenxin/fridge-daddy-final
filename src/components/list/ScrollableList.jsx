@@ -6,17 +6,34 @@ import RestoreFromTrashIcon from "@mui/icons-material/RestoreFromTrash";
 import IconButton from "@mui/material/IconButton";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
-
-function generate(element) {
-  return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].map(
-    (value) =>
-      React.cloneElement(element, {
-        key: value,
-      })
-  );
-}
+import mockUserData from "../testingFolder/mockUserData";
 
 const ScrollableList = ({ name }) => {
+  const extractedData = mockUserData[name];
+  const extractedList = extractedData.map((data) => {
+    console.log(data);
+    return (
+      <ListItem
+        key={`${data.item}-${data.purchaseDate}`}
+        secondaryAction={
+          <IconButton edge="end" aria-label="delete">
+            {name !== "trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
+          </IconButton>
+        }
+      >
+        <ListItemAvatar>
+          <Avatar>
+            <FolderIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText
+          primary={data.item}
+          secondary={`Category: ${data.category}`}
+        />
+      </ListItem>
+    );
+  });
+
   return (
     <Paper
       style={{
@@ -34,25 +51,7 @@ const ScrollableList = ({ name }) => {
           minHeight: 450,
         }}
       >
-        {generate(
-          <ListItem
-            secondaryAction={
-              <IconButton edge="end" aria-label="delete">
-                {name !== "Trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
-              </IconButton>
-            }
-          >
-            <ListItemAvatar>
-              <Avatar>
-                <FolderIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="Single-line item"
-              secondary="Secondary text"
-            />
-          </ListItem>
-        )}
+        {extractedList}
       </List>
     </Paper>
   );

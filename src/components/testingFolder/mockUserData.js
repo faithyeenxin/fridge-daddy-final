@@ -50,7 +50,7 @@ const mockUserData = {
       item: "cucumber",
       purchaseDate: "2022-08-26",
       expiryDate: "2022-09-05",
-      category: "vegeatables",
+      category: "vegetables",
     },
     {
       item: "eggs",
@@ -67,31 +67,31 @@ const mockUserData = {
   ],
   rotten: [
     {
-      item: "fish",
-      purchaseDate: "2022-08-26",
-      expiryDate: "2022-09-05",
-      category: "fish",
-    },
-    {
-      item: "apple",
+      item: "watermelon",
       purchaseDate: "2022-08-26",
       expiryDate: "2022-09-05",
       category: "fruit",
     },
     {
-      item: "beef",
+      item: "mango",
+      purchaseDate: "2022-08-26",
+      expiryDate: "2022-09-05",
+      category: "fruit",
+    },
+    {
+      item: "mutton",
       purchaseDate: "2022-08-26",
       expiryDate: "2022-09-05",
       category: "raw meat",
     },
     {
-      item: "cupcake",
+      item: "macaron",
       purchaseDate: "2022-08-26",
       expiryDate: "2022-09-05",
       category: "pastry",
     },
     {
-      item: "banana",
+      item: "blueberry",
       purchaseDate: "2022-08-26",
       expiryDate: "2022-09-05",
       category: "fruit",
@@ -112,7 +112,7 @@ const mockUserData = {
       item: "cucumber",
       purchaseDate: "2022-08-26",
       expiryDate: "2022-09-05",
-      category: "vegeatables",
+      category: "vegetables",
     },
     {
       item: "eggs",
@@ -129,25 +129,25 @@ const mockUserData = {
   ],
   trashed: [
     {
-      item: "fish",
+      item: "salmon",
       purchaseDate: "2022-08-26",
       expiryDate: "2022-09-05",
       category: "fish",
     },
     {
-      item: "apple",
+      item: "blueberry",
       purchaseDate: "2022-08-26",
       expiryDate: "2022-09-05",
       category: "fruit",
     },
     {
-      item: "beef",
+      item: "chicken",
       purchaseDate: "2022-08-26",
       expiryDate: "2022-09-05",
       category: "raw meat",
     },
     {
-      item: "cupcake",
+      item: "molten lava cake",
       purchaseDate: "2022-08-26",
       expiryDate: "2022-09-05",
       category: "pastry",
@@ -174,7 +174,7 @@ const mockUserData = {
       item: "cucumber",
       purchaseDate: "2022-08-26",
       expiryDate: "2022-09-05",
-      category: "vegeatables",
+      category: "vegetables",
     },
     {
       item: "eggs",
@@ -190,3 +190,5 @@ const mockUserData = {
     },
   ],
 };
+
+export default mockUserData;
