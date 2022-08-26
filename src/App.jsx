@@ -10,28 +10,26 @@ import User from "./pages/User";
 import Recipes from "./pages/Recipes";
 import AddCategory from "./pages/AddCategory";
 
-// import DataContextProvider from "./contextStore/DataContextProvider";
+import DataProvider from "./contextStore/DataProvider.js";
 
 function App() {
   return (
-    // <DataContextProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Start />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/evergreen" element={<Evergreen />} />
-          <Route path="/baddies" element={<Baddies />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/category" element={<AddCategory />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/recipes" element={<Recipes />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-    // </DataContextProvider>
-
-    // <h1>hello world</h1>
+    <DataProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Start />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/evergreen" element={<Evergreen />} />
+            <Route path="/baddies" element={<Baddies />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/category" element={<AddCategory />} />
+            <Route path="/user" element={<User />} />
+            <Route path="/recipes" element={<Recipes />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </DataProvider>
   );
 }
 
