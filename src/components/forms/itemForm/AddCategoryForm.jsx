@@ -17,7 +17,7 @@ const containsText = (text, searchText) =>
 
 const allOptions = ["+ Add Category", "Fruit", "Meat", "Vegetable", "Fish"];
 
-const AddCategoryForm = () => {
+const AddCategoryForm = ({ handleCategoryChange }) => {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("");
   const [searchText, setSearchText] = useState("");
@@ -48,7 +48,10 @@ const AddCategoryForm = () => {
           sx={{ margin: "10px" }}
           margin="normal"
           helperText="We'll suggest an expiration date!"
-          onChange={(e) => setSelectedOption(e.target.value)}
+          onChange={(e) => {
+            setSelectedOption(e.target.value);
+            handleCategoryChange(e);
+          }}
           onClose={() => setSearchText("")}
           // This prevents rendering empty string in Select's value
           // if search text would exclude currently selected option.
@@ -68,7 +71,9 @@ const AddCategoryForm = () => {
                   </InputAdornment>
                 ),
               }}
-              onChange={(e) => setSearchText(e.target.value)}
+              onChange={(e) => {
+                setSearchText(e.target.value);
+              }}
               onKeyDown={(e) => {
                 if (e.key !== "Escape") {
                   // Prevents autoselecting item while typing (default Select behaviour)

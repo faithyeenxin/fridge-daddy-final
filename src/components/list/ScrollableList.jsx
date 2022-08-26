@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Avatar, List, ListItem, Paper } from "@mui/material";
 import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -6,12 +6,15 @@ import RestoreFromTrashIcon from "@mui/icons-material/RestoreFromTrash";
 import IconButton from "@mui/material/IconButton";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
-import mockUserData from "../testingFolder/mockUserData";
+// import mockUserData from "../testingFolder/mockUserData";
+
+import DataContext from "../../contextStore/data-context";
 
 const ScrollableList = ({ name }) => {
-  const extractedData = mockUserData[name];
+  const userDataCtx = useContext(DataContext);
+  const extractedData = userDataCtx[name];
   const extractedList = extractedData.map((data) => {
-    console.log(data);
+    // console.log(data);
     return (
       <ListItem
         key={`${data.item}-${data.purchaseDate}`}
@@ -38,6 +41,7 @@ const ScrollableList = ({ name }) => {
     <Paper
       style={{
         minWidth: 350,
+        minHeight: 500,
         maxHeight: 500,
         overflow: "auto",
       }}
@@ -48,7 +52,8 @@ const ScrollableList = ({ name }) => {
         sx={{
           borderRadius: "sm",
           minWidth: 350,
-          minHeight: 450,
+          minHeight: 500,
+          maxHeight: 500,
         }}
       >
         {extractedList}

@@ -1,17 +1,11 @@
-import {
-  Button,
-  Container,
-  Grid,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
-import React from "react";
+import { Button, Container, Grid, Paper, Typography } from "@mui/material";
+import React, { useState, useContext } from "react";
 import AddCategoryForm from "./itemForm/AddCategoryForm";
 import AddDateForm from "./itemForm/AddDateForm";
 import AddFoodForm from "./itemForm/AddFoodForm";
 import AddQuantityForm from "./itemForm/AddQuantityForm";
 import Image from "/images/full_peach_opacity.jpg";
+import DataContext from "../../contextStore/data-context";
 
 const buttonSx = {
   backgroundColor: "#f93f23",
@@ -26,6 +20,44 @@ const buttonSx = {
 };
 
 const ItemForm = () => {
+  const [foodItem, setFood] = useState("");
+  const [quantityItem, setQuantity] = useState("");
+  const [categoryItem, setCategory] = useState("");
+  const [purchaseDateItem, setPurchaseDate] = useState("");
+  const [expiryDateItem, setExpiryDate] = useState("");
+
+  const dataCtx = useContext(DataContext);
+
+  const addToList = () => {
+    dataCtx.addEvergreen({
+      item: foodItem,
+      quantity: quantityItem,
+      category: categoryItem,
+      purchaseDate: purchaseDateItem,
+      expiryDate: expiryDateItem,
+    });
+  };
+
+  const handleFoodChange = (e) => {
+    setFood(e.target.value);
+  };
+
+  const handleQuantityChange = (e) => {
+    setQuantity(e.target.value);
+  };
+
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const handlePurchaseDateChange = (e) => {
+    setPurchaseDate(e.target.value);
+  };
+
+  const handleExpiryDateChange = (e) => {
+    setExpiryDate(e.target.value);
+  };
+
   return (
     <Paper
       sx={{
@@ -47,15 +79,21 @@ const ItemForm = () => {
           Add an Item!
         </Typography>
         <Grid container sx={{ padding: "0% 10%" }}>
-          <AddFoodForm />
-          <AddQuantityForm />
-          <AddCategoryForm />
+          <AddFoodForm handleFoodChange={handleFoodChange} />
+          <AddQuantityForm handleQuantityChange={handleQuantityChange} />
+          <AddCategoryForm handleCategoryChange={handleCategoryChange} />
         </Grid>
         <Grid container sx={{ padding: "0% 20%" }}>
-          <AddDateForm name="Purchase Date" />
-          <AddDateForm name="Expiration Date" />
+          <AddDateForm
+            name="Purchase Date"
+            handleDateChange={handlePurchaseDateChange}
+          />
+          <AddDateForm
+            name="Expiration Date"
+            handleDateChange={handleExpiryDateChange}
+          />
         </Grid>
-        <Button variant="primary" sx={buttonSx}>
+        <Button variant="primary" sx={buttonSx} onClick={addToList}>
           Submit
         </Button>
       </Container>

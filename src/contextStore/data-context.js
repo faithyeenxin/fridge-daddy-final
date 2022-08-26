@@ -2,7 +2,7 @@ import React from "react";
 
 const DataContext = React.createContext({
   user: "",
-  evergreen: [], //objects would be contained in the array
+  evergreen: [],
   rotten: [],
   trashed: [],
   checkEvergreen: () => {},

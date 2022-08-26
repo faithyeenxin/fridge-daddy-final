@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { Grid } from "@mui/material";
 
-const AddDateForm = ({ name }) => {
+const AddDateForm = ({ name, handleDateChange }) => {
   let today = new Date();
   let dd = today.getDate();
   let mm = today.getMonth() + 1; // this is because January is 0!
@@ -41,6 +41,7 @@ const AddDateForm = ({ name }) => {
         }}
         InputProps={{ min: "2022-06-22" }}
         sx={{ margin: "10px" }}
+        onChange={handleDateChange}
       />
     </Grid>
   );

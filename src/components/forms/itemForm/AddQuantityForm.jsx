@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  Button,
-  Container,
-  Grid,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
-const AddQuantityForm = () => {
+import { Grid, TextField } from "@mui/material";
+const AddQuantityForm = ({ handleQuantityChange }) => {
   return (
     <Grid
       item
@@ -20,11 +13,12 @@ const AddQuantityForm = () => {
       }}
     >
       <TextField
-        type="number"
         variant="filled"
         label="quantity"
         size="small"
         helperText=" "
+        // onChange={handleQuantityChange}
+        onChange={(e) => handleQuantityChange(e)}
       />
     </Grid>
   );

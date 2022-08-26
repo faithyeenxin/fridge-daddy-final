@@ -10,7 +10,7 @@ import User from "./pages/User";
 import Recipes from "./pages/Recipes";
 import AddCategory from "./pages/AddCategory";
 
-import DataProvider from "./contextStore/DataProvider.js";
+import DataProvider from "./contextStore/DataProvider";
 
 function App() {
   return (

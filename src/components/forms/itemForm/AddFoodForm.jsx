@@ -1,13 +1,6 @@
-import React from "react";
-import {
-  Button,
-  Container,
-  Grid,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
-const AddFoodForm = () => {
+import React, { useState } from "react";
+import { Grid, TextField, Typography } from "@mui/material";
+const AddFoodForm = ({ handleFoodChange }) => {
   return (
     <Grid
       item
@@ -25,6 +18,7 @@ const AddFoodForm = () => {
         label="food/ingredient"
         size="small"
         helperText=" "
+        onChange={(e) => handleFoodChange(e)}
       />
     </Grid>
   );

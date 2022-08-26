@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
@@ -21,7 +21,8 @@ import { Container } from "@mui/system";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-import mockUserData from "../testingFolder/mockUserData";
+// import mockUserData from "../testingFolder/mockUserData";
+import DataContext from "../../contextStore/data-context";
 
 const buttonSx = {
   margin: "0 auto",
@@ -33,30 +34,59 @@ const buttonSx = {
 
 const MyListItem = ({ name, descrip }) => {
   const navigate = useNavigate();
+  const userDataCtx = useContext(DataContext);
+  const extractedData = userDataCtx[name.toLowerCase()];
+  let extractedList;
+  if (extractedData.length <= 5) {
+    extractedList = extractedData.map((data) => {
+      // console.log(data);
+      return (
+        <ListItem
+          key={`${data.purchaseDate}-${data.expiryDate}`}
+          secondaryAction={
+            <IconButton edge="end" aria-label="delete">
+              {name !== "Trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
+            </IconButton>
+          }
+        >
+          <ListItemAvatar>
+            <Avatar>
+              <FolderIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText
+            primary={data.item}
+            secondary={`Quantity: ${data.quantity}`}
+          />
+        </ListItem>
+      );
+    });
+  } else {
+    extractedData.splice(0, 5).map((data) => {
+      // console.log(data);
+      return (
+        <ListItem
+          key={`${data.purchaseDate}-${data.expiryDate}`}
+          secondaryAction={
+            <IconButton edge="end" aria-label="delete">
+              {name !== "Trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
+            </IconButton>
+          }
+        >
+          <ListItemAvatar>
+            <Avatar>
+              <FolderIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText
+            primary={data.item}
+            secondary={`Quantity: ${data.quantity}`}
+          />
+        </ListItem>
+      );
+    });
+  }
 
-  const extractedData = mockUserData[name.toLowerCase()].slice(0, 5);
-  const extractedList = extractedData.map((data) => {
-    console.log(data);
-    return (
-      <ListItem
-        secondaryAction={
-          <IconButton edge="end" aria-label="delete">
-            {name !== "Trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
-          </IconButton>
-        }
-      >
-        <ListItemAvatar>
-          <Avatar>
-            <FolderIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText
-          primary={data.item}
-          secondary={`Category: ${data.category}`}
-        />
-      </ListItem>
-    );
-  });
   return (
     <Grid item s={4} sx={{ margin: "2%" }}>
       <Card>
@@ -69,7 +99,12 @@ const MyListItem = ({ name, descrip }) => {
           <List
             size="lg"
             variant="outlined"
-            sx={{ borderRadius: "sm", minWidth: 300, minHeight: 350 }}
+            sx={{
+              borderRadius: "sm",
+              minWidth: 300,
+              minHeight: 350,
+              maxHeight: 350,
+            }}
           >
             {extractedList}
           </List>
