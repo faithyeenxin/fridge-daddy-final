@@ -36,56 +36,40 @@ const MyListItem = ({ name, descrip }) => {
   const navigate = useNavigate();
   const userDataCtx = useContext(DataContext);
   const extractedData = userDataCtx[name.toLowerCase()];
-  let extractedList;
-  if (extractedData.length <= 5) {
-    extractedList = extractedData.map((data) => {
-      // console.log(data);
-      return (
-        <ListItem
-          key={`${data.purchaseDate}-${data.expiryDate}`}
-          secondaryAction={
-            <IconButton edge="end" aria-label="delete">
-              {name !== "Trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
-            </IconButton>
-          }
-        >
-          <ListItemAvatar>
-            <Avatar>
-              <FolderIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText
-            primary={data.item}
-            secondary={`Quantity: ${data.quantity}`}
-          />
-        </ListItem>
-      );
-    });
+  const lastItemIndex = extractedData.length;
+  let extractedCroppedData;
+  if (extractedData.length > 5) {
+    extractedCroppedData = extractedData.slice(
+      lastItemIndex - 5,
+      lastItemIndex
+    );
+    extractedCroppedData.reverse();
   } else {
-    extractedData.splice(0, 5).map((data) => {
-      // console.log(data);
-      return (
-        <ListItem
-          key={`${data.purchaseDate}-${data.expiryDate}`}
-          secondaryAction={
-            <IconButton edge="end" aria-label="delete">
-              {name !== "Trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
-            </IconButton>
-          }
-        >
-          <ListItemAvatar>
-            <Avatar>
-              <FolderIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText
-            primary={data.item}
-            secondary={`Quantity: ${data.quantity}`}
-          />
-        </ListItem>
-      );
-    });
+    extractedCroppedData = extractedData.reverse();
   }
+  // console.log(extractedCroppedData);
+  const extractedList = extractedCroppedData.map((data) => {
+    return (
+      <ListItem
+        key={`${data.purchaseDate}-${Math.random()}`}
+        secondaryAction={
+          <IconButton edge="end" aria-label="delete">
+            {name !== "Trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
+          </IconButton>
+        }
+      >
+        <ListItemAvatar>
+          <Avatar>
+            <FolderIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText
+          primary={data.item}
+          secondary={`Quantity: ${data.quantity}`}
+        />
+      </ListItem>
+    );
+  });
 
   return (
     <Grid item s={4} sx={{ margin: "2%" }}>
