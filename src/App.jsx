@@ -12,20 +12,21 @@ import AddCategory from "./pages/AddCategory";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Start />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/evergreen" element={<Evergreen />} />
-          <Route path="/baddies" element={<Baddies />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/category" element={<AddCategory />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/recipes" element={<Recipes />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path="/" element={<Layout />}>
+    //       <Route index element={<Start />} />
+    //       <Route path="/home" element={<Home />} />
+    //       <Route path="/evergreen" element={<Evergreen />} />
+    //       <Route path="/baddies" element={<Baddies />} />
+    //       <Route path="/search" element={<Search />} />
+    //       <Route path="/category" element={<AddCategory />} />
+    //       <Route path="/user" element={<User />} />
+    //       <Route path="/recipes" element={<Recipes />} />
+    //     </Route>
+    //   </Routes>
+    // </BrowserRouter>
+    <h1>hello world</h1>
   );
 }
 

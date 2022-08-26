@@ -35,10 +35,11 @@ const AddDateForm = ({ name }) => {
         size="small"
         label={name}
         type="date"
-        defaultValue={today}
+        // defaultValue={today}
         InputLabelProps={{
           shrink: true,
         }}
+        InputProps={{ min: "2022-06-22" }}
         sx={{ margin: "10px" }}
       />
     </Grid>

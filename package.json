@@ -16,6 +16,7 @@
     "@mui/material": "^5.10.2",
     "@mui/x-data-grid": "^5.15.3",
     "@mui/x-date-pickers": "^5.0.0-beta.6",
+    "airtable": "^0.11.4",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -27,5 +28,20 @@
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.1",
     "vite": "^3.0.7"
-  }
+  },
+  "main": "apiKey.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faithyeenxin/fridge-daddy-final.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/faithyeenxin/fridge-daddy-final/issues"
+  },
+  "homepage": "https://github.com/faithyeenxin/fridge-daddy-final#readme",
+  "description": ""
 }
