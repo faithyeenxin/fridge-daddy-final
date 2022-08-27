@@ -11,17 +11,41 @@ import ListItemText from "@mui/material/ListItemText";
 import DataContext from "../../contextStore/data-context";
 
 const ScrollableList = ({ name }) => {
-  const userDataCtx = useContext(DataContext);
-  const extractedData = userDataCtx[name];
+  const dataCtx = useContext(DataContext);
+  const extractedData = dataCtx[name];
   const extractedList = extractedData.map((data) => {
-    // console.log(data);
+    const moveToTrashHandler = (data) => {
+      dataCtx.moveToTrash({
+        id: data.id,
+        item: data.item,
+        quantity: data.quantity,
+        category: data.category,
+        purchaseDate: data.purchaseDateItem,
+        expiryDate: data.expiryDateItem,
+      });
+    };
+
     return (
       <ListItem
-        key={`${data.item}-${data.purchaseDate}`}
+        key={`${data.item}-${data.category}-${Math.random()}`}
         secondaryAction={
-          <IconButton edge="end" aria-label="delete">
-            {name !== "trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
-          </IconButton>
+          name !== "Trashed" ? (
+            <IconButton
+              edge="end"
+              aria-label="delete"
+              onClick={() => moveToTrashHandler(data)}
+            >
+              <DeleteIcon />
+            </IconButton>
+          ) : (
+            <IconButton
+              edge="end"
+              aria-label="delete"
+              onClick={() => console.log("trash item was clicked")} //to add removeTrashHandler here
+            >
+              <RestoreFromTrashIcon />
+            </IconButton>
+          )
         }
       >
         <ListItemAvatar>
@@ -31,9 +55,28 @@ const ScrollableList = ({ name }) => {
         </ListItemAvatar>
         <ListItemText
           primary={data.item}
-          secondary={`Category: ${data.category}`}
+          secondary={`Quantity: ${data.quantity}`}
         />
       </ListItem>
+
+      // <ListItem
+      //   key={`${data.item}-${data.purchaseDate}`}
+      //   secondaryAction={
+      //     <IconButton edge="end" aria-label="delete">
+      //       {name !== "trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
+      //     </IconButton>
+      //   }
+      // >
+      //   <ListItemAvatar>
+      //     <Avatar>
+      //       <FolderIcon />
+      //     </Avatar>
+      //   </ListItemAvatar>
+      //   <ListItemText
+      //     primary={data.item}
+      //     secondary={`Category: ${data.category}`}
+      //   />
+      // </ListItem>
     );
   });
 

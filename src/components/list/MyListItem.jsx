@@ -29,9 +29,8 @@ const MyListItem = ({ name, descrip }) => {
   const lastItemIndex = extractedData.length;
   let extractedCroppedData;
 
-  const removeEvergreenHandler = (data) => {
-    console.log(data);
-    dataCtx.removeEvergreen({
+  const moveToTrashHandler = (data) => {
+    dataCtx.moveToTrash({
       id: data.id,
       item: data.item,
       quantity: data.quantity,
@@ -59,7 +58,7 @@ const MyListItem = ({ name, descrip }) => {
             <IconButton
               edge="end"
               aria-label="delete"
-              onClick={() => removeEvergreenHandler(data)}
+              onClick={() => moveToTrashHandler(data)}
             >
               <DeleteIcon />
             </IconButton>

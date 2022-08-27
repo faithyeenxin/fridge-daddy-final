@@ -49,7 +49,7 @@ const DataProvider = (props) => {
     dispatchDataAction({ type: "ADD_EVERGREEN", item: item });
   };
 
-  const removeEvergreenHandler = (item) => {
+  const moveToTrashHandler = (item) => {
     dispatchDataAction({ type: "REMOVE_EVERGREEN", item: item });
   };
   // const removeFromTrashHandler = (item) => {};
@@ -63,7 +63,7 @@ const DataProvider = (props) => {
     rotten: dataState.rotten,
     trashed: dataState.trashed,
     addEvergreen: addEvergreenHandler,
-    removeEvergreen: removeEvergreenHandler,
+    moveToTrash: moveToTrashHandler,
     // checkEvergreen: checkEvergreenHandler,
     // transferEvergreenToRotten: tranferEvergreenToRottenHandler,
     // transferEvergreenToTrashed: transferEvergreenToTrashedHandler,
