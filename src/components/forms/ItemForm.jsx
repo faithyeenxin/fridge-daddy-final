@@ -30,6 +30,7 @@ const ItemForm = () => {
 
   const addToList = () => {
     dataCtx.addEvergreen({
+      id: `${foodItem}-${categoryItem}-${purchaseDateItem}-${expiryDateItem}-${Math.random()}`,
       item: foodItem,
       quantity: quantityItem,
       category: categoryItem,

@@ -4,11 +4,31 @@ import DataContext from "./data-context.js";
 const defaultDataState = { evergreen: [], rotten: [], trashed: [] };
 
 const dataReducer = (state, action) => {
+  let updatedEvergreen;
+  let updatedRotten;
+  let updatedTrashed;
   switch (action.type) {
     case "ADD_EVERGREEN":
-      const updatedEvergreen = state.evergreen.concat(action.item);
-      const updatedRotten = state.rotten;
-      const updatedTrashed = state.trashed;
+      updatedEvergreen = state.evergreen.concat(action.item);
+      updatedRotten = state.rotten;
+      updatedTrashed = state.trashed;
+
+      return {
+        evergreen: updatedEvergreen,
+        rotten: updatedRotten,
+        trashed: updatedTrashed,
+      };
+      break;
+    case "REMOVE_EVERGREEN":
+      console.log(action.type);
+      console.log(action.item);
+      console.log(state);
+      console.log(state.evergreen);
+      updatedEvergreen = state.evergreen.map(
+        (item) => action.item.id !== item.id && item
+      );
+      updatedRotten = state.rotten;
+      updatedTrashed = state.trashed.concat(action.item);
 
       return {
         evergreen: updatedEvergreen,
@@ -32,7 +52,9 @@ const DataProvider = (props) => {
     dispatchDataAction({ type: "ADD_EVERGREEN", item: item });
   };
 
-  // const removeEvergreenHandler = (item) => {};
+  const removeEvergreenHandler = (item) => {
+    dispatchDataAction({ type: "REMOVE_EVERGREEN", item: item });
+  };
   // const removeFromTrashHandler = (item) => {};
   // const checkEvergreenHandler = (item) => {};
   // const tranferEvergreenToRottenHandler = (item) => {};
@@ -44,7 +66,7 @@ const DataProvider = (props) => {
     rotten: dataState.rotten,
     trashed: dataState.trashed,
     addEvergreen: addEvergreenHandler,
-    // removeEvergreen: removeEvergreenHandler,
+    removeEvergreen: removeEvergreenHandler,
     // checkEvergreen: checkEvergreenHandler,
     // transferEvergreenToRotten: tranferEvergreenToRottenHandler,
     // transferEvergreenToTrashed: transferEvergreenToTrashedHandler,

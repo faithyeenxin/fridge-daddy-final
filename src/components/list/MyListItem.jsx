@@ -10,7 +10,6 @@ import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Card, CardActions, CardHeader, CardContent } from "@mui/material";
 import { Button } from "@mui/material";
-
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../../contextStore/data-context";
@@ -25,26 +24,42 @@ const buttonSx = {
 
 const MyListItem = ({ name, descrip }) => {
   const navigate = useNavigate();
-  const userDataCtx = useContext(DataContext);
-  const extractedData = userDataCtx[name.toLowerCase()];
+  const dataCtx = useContext(DataContext);
+  const extractedData = dataCtx[name.toLowerCase()];
   const lastItemIndex = extractedData.length;
   let extractedCroppedData;
+
+  const removeEvergreenHandler = (data) => {
+    console.log(data);
+    dataCtx.removeEvergreen({
+      id: data.id,
+      item: data.item,
+      quantity: data.quantity,
+      category: data.category,
+      purchaseDate: data.purchaseDateItem,
+      expiryDate: data.expiryDateItem,
+    });
+  };
+
   if (extractedData.length > 5) {
-    extractedCroppedData = extractedData.slice(
-      lastItemIndex - 5,
-      lastItemIndex
-    );
-    extractedCroppedData.reverse();
+    extractedCroppedData = extractedData
+      .slice(lastItemIndex - 5, lastItemIndex)
+      .reverse();
   } else {
-    extractedCroppedData = extractedData.reverse();
+    // bug was here: must return a new copy then .reverse() can work and display properly. altho idk exactly why
+    extractedCroppedData = extractedData.slice(0).reverse();
   }
   // console.log(extractedCroppedData);
   const extractedList = extractedCroppedData.map((data) => {
     return (
       <ListItem
-        key={`${data.purchaseDate}-${Math.random()}`}
+        key={`${data.item}-${data.category}-${Math.random()}`}
         secondaryAction={
-          <IconButton edge="end" aria-label="delete">
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            onClick={() => removeEvergreenHandler(data)}
+          >
             {name !== "Trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
           </IconButton>
         }
