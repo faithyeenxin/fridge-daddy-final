@@ -21,11 +21,8 @@ const dataReducer = (state, action) => {
       break;
     case "REMOVE_EVERGREEN":
       console.log(action.type);
-      console.log(action.item);
-      console.log(state);
-      console.log(state.evergreen);
-      updatedEvergreen = state.evergreen.map(
-        (item) => action.item.id !== item.id && item
+      updatedEvergreen = state.evergreen.filter(
+        (item) => action.item.id !== item.id
       );
       updatedRotten = state.rotten;
       updatedTrashed = state.trashed.concat(action.item);

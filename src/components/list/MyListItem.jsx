@@ -49,19 +49,29 @@ const MyListItem = ({ name, descrip }) => {
     // bug was here: must return a new copy then .reverse() can work and display properly. altho idk exactly why
     extractedCroppedData = extractedData.slice(0).reverse();
   }
-  // console.log(extractedCroppedData);
+
   const extractedList = extractedCroppedData.map((data) => {
     return (
       <ListItem
         key={`${data.item}-${data.category}-${Math.random()}`}
         secondaryAction={
-          <IconButton
-            edge="end"
-            aria-label="delete"
-            onClick={() => removeEvergreenHandler(data)}
-          >
-            {name !== "Trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
-          </IconButton>
+          name !== "Trashed" ? (
+            <IconButton
+              edge="end"
+              aria-label="delete"
+              onClick={() => removeEvergreenHandler(data)}
+            >
+              <DeleteIcon />
+            </IconButton>
+          ) : (
+            <IconButton
+              edge="end"
+              aria-label="delete"
+              onClick={() => console.log("trash item was clicked")} //to add removeTrashHandler here
+            >
+              <RestoreFromTrashIcon />
+            </IconButton>
+          )
         }
       >
         <ListItemAvatar>
