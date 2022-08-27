@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import { Grid } from "@mui/material";
 
@@ -39,7 +39,7 @@ const AddDateForm = ({ name, handleDateChange }) => {
         InputLabelProps={{
           shrink: true,
         }}
-        InputProps={{ min: "2022-06-22" }}
+        InputProps={{ min: minDate }} //"2022-06-22"
         sx={{ margin: "10px" }}
         onChange={handleDateChange}
       />

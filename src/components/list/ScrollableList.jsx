@@ -12,19 +12,19 @@ import DataContext from "../../contextStore/data-context";
 
 const ScrollableList = ({ name }) => {
   const dataCtx = useContext(DataContext);
-  const extractedData = dataCtx[name];
-  const extractedList = extractedData.map((data) => {
-    const moveToTrashHandler = (data) => {
-      dataCtx.moveToTrash({
-        id: data.id,
-        item: data.item,
-        quantity: data.quantity,
-        category: data.category,
-        purchaseDate: data.purchaseDateItem,
-        expiryDate: data.expiryDateItem,
-      });
-    };
 
+  const moveToTrashHandler = (data) => {
+    dataCtx.moveToTrash({
+      id: data.id,
+      item: data.item,
+      quantity: data.quantity,
+      category: data.category,
+      purchaseDate: data.purchaseDateItem,
+      expiryDate: data.expiryDateItem,
+    });
+  };
+
+  const extractedList = dataCtx[name].map((data) => {
     return (
       <ListItem
         key={`${data.item}-${data.category}-${Math.random()}`}
@@ -55,28 +55,9 @@ const ScrollableList = ({ name }) => {
         </ListItemAvatar>
         <ListItemText
           primary={data.item}
-          secondary={`Quantity: ${data.quantity}`}
+          secondary={`quantity: ${data.quantity}`}
         />
       </ListItem>
-
-      // <ListItem
-      //   key={`${data.item}-${data.purchaseDate}`}
-      //   secondaryAction={
-      //     <IconButton edge="end" aria-label="delete">
-      //       {name !== "trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
-      //     </IconButton>
-      //   }
-      // >
-      //   <ListItemAvatar>
-      //     <Avatar>
-      //       <FolderIcon />
-      //     </Avatar>
-      //   </ListItemAvatar>
-      //   <ListItemText
-      //     primary={data.item}
-      //     secondary={`Category: ${data.category}`}
-      //   />
-      // </ListItem>
     );
   });
 
@@ -99,10 +80,29 @@ const ScrollableList = ({ name }) => {
           maxHeight: 500,
         }}
       >
-        {extractedList}
+        {/* {extractedList} */}
       </List>
     </Paper>
   );
 };
 
 export default ScrollableList;
+
+// <ListItem
+//   key={`${data.item}-${data.purchaseDate}`}
+//   secondaryAction={
+//     <IconButton edge="end" aria-label="delete">
+//       {name !== "trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
+//     </IconButton>
+//   }
+// >
+//   <ListItemAvatar>
+//     <Avatar>
+//       <FolderIcon />
+//     </Avatar>
+//   </ListItemAvatar>
+//   <ListItemText
+//     primary={data.item}
+//     secondary={`Category: ${data.category}`}
+//   />
+// </ListItem>

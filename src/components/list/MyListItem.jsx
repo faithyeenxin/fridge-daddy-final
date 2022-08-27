@@ -80,7 +80,7 @@ const MyListItem = ({ name, descrip }) => {
         </ListItemAvatar>
         <ListItemText
           primary={data.item}
-          secondary={`Quantity: ${data.quantity}`}
+          secondary={`quantity: ${data.quantity}`}
         />
       </ListItem>
     );

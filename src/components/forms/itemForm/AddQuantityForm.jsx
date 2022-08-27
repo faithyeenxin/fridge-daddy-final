@@ -13,6 +13,7 @@ const AddQuantityForm = ({ handleQuantityChange }) => {
       }}
     >
       <TextField
+        autoComplete="off"
         variant="filled"
         label="quantity"
         size="small"

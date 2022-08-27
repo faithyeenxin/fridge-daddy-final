@@ -33,7 +33,7 @@ const SearchContentSection = () => {
               subheader="Psssttt! You're able to remove categories here"
               sx={{ color: "#e66351" }}
             />
-            <ScrollableList />
+            <ScrollableList name="rotten" />
           </Card>
         </Grid>
         <Grid
@@ -50,7 +50,7 @@ const SearchContentSection = () => {
               subheader="Were these what you were looking for?"
               sx={{ color: "#e66351" }}
             />
-            <ScrollableList />
+            <ScrollableList name="rotten" />
           </Card>
         </Grid>
       </Grid>

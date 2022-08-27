@@ -19,7 +19,7 @@ const dataReducer = (state, action) => {
         trashed: updatedTrashed,
       };
       break;
-    case "REMOVE_EVERGREEN":
+    case "REMOVE_ITEM":
       console.log(action.type);
       updatedEvergreen = state.evergreen.filter(
         (item) => action.item.id !== item.id
@@ -50,7 +50,7 @@ const DataProvider = (props) => {
   };
 
   const moveToTrashHandler = (item) => {
-    dispatchDataAction({ type: "REMOVE_EVERGREEN", item: item });
+    dispatchDataAction({ type: "REMOVE_ITEM", item: item });
   };
   // const removeFromTrashHandler = (item) => {};
   // const checkEvergreenHandler = (item) => {};
@@ -64,10 +64,10 @@ const DataProvider = (props) => {
     trashed: dataState.trashed,
     addEvergreen: addEvergreenHandler,
     moveToTrash: moveToTrashHandler,
+    // removeFromTrash: removeFromTrashHandler
     // checkEvergreen: checkEvergreenHandler,
     // transferEvergreenToRotten: tranferEvergreenToRottenHandler,
     // transferEvergreenToTrashed: transferEvergreenToTrashedHandler,
-    // removeFromTrash: removeFromTrashHandler
   };
 
   return (

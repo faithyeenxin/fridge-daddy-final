@@ -7,6 +7,10 @@ import AddQuantityForm from "./itemForm/AddQuantityForm";
 import Image from "/images/full_peach_opacity.jpg";
 import DataContext from "../../contextStore/data-context";
 
+import differenceInDays from "date-fns/differenceInDays";
+
+// differenceInDays(dateLeft, dateRight);
+
 const buttonSx = {
   backgroundColor: "#f93f23",
   color: "white",
@@ -29,6 +33,9 @@ const ItemForm = () => {
   const dataCtx = useContext(DataContext);
 
   const addToList = () => {
+    console.log(purchaseDateItem, expiryDateItem); // date format returns : 2022-08-20 2022-08-31
+    const diffInDays = differenceInDays(purchaseDateItem, expiryDateItem);
+    console.log(diffInDays);
     dataCtx.addEvergreen({
       id: `${foodItem}-${categoryItem}-${purchaseDateItem}-${expiryDateItem}-${Math.random()}`,
       item: foodItem,
@@ -52,10 +59,12 @@ const ItemForm = () => {
   };
 
   const handlePurchaseDateChange = (e) => {
+    console.log(e.target.value);
     setPurchaseDate(e.target.value);
   };
 
   const handleExpiryDateChange = (e) => {
+    console.log(e.target.value);
     setExpiryDate(e.target.value);
   };
 
