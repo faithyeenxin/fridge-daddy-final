@@ -19,9 +19,9 @@ const navItems = [
   "Home",
   "Evergreen",
   "Baddies",
+  "Category",
   "Recipes",
   "Search",
-  "Category",
   "User",
   "Log Out",
 ];

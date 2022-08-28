@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useContext } from "react";
 import {
   FormControl,
   InputAdornment,
@@ -10,24 +10,25 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-
-import mockShelfLifeData from "../../testingFolder/mockShelfLifeData";
+import ShelfContext from "../../../contextStore/shelfLife-context";
 
 const containsText = (text, searchText) =>
   text.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
 
 //this should get data from API
-const shelfLifeOptions = [
-  {
-    name: "+ add category",
-  },
-  ...mockShelfLifeData,
-];
+
 const AddCategoryForm = ({ handleCategoryChange }) => {
+  const shelfCtx = useContext(ShelfContext);
+  const shelfLifeOptions = [
+    {
+      name: "+ add category",
+    },
+    ...shelfCtx.shelfData,
+  ];
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("");
   const [searchText, setSearchText] = useState("");
-  const [shelfLife, setShelfLife] = useState("");
+
   // The React useMemo Hook returns a memorized value
   const displayedOptions = useMemo(
     () =>
@@ -61,6 +62,7 @@ const AddCategoryForm = ({ handleCategoryChange }) => {
           helperText="We'll suggest an expiration date!"
           onChange={(e) => {
             setSelectedOption(e.target.value);
+            setSearchText("");
             //handleCategoryChange only passes back the value but i want it to pass back more info... how?
             handleCategoryChange(e);
           }}
