@@ -59,6 +59,17 @@ const MyListItem = ({ name, descrip }) => {
     });
   };
 
+  const removeFromTrashHandler = (data) => {
+    dataCtx.removeFromTrash({
+      id: data.id,
+      item: data.item,
+      quantity: data.quantity,
+      category: data.category,
+      purchaseDate: data.purchaseDate,
+      expiryDate: data.expiryDate,
+    });
+  };
+
   if (extractedData.length > 5) {
     extractedCroppedData = extractedData
       .slice(lastItemIndex - 5, lastItemIndex)
@@ -97,7 +108,7 @@ const MyListItem = ({ name, descrip }) => {
             <IconButton
               edge="end"
               aria-label="delete"
-              onClick={() => console.log("trash item was clicked")} //to add removeTrashHandler here
+              onClick={() => removeFromTrashHandler(data)} //to add removeTrashHandler here
             >
               <RestoreFromTrashIcon />
             </IconButton>

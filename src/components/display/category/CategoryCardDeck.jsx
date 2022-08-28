@@ -4,12 +4,17 @@ import CategoryCard from "./CategoryCard";
 import ShelfContext from "../../../contextStore/shelfLife-context";
 const CategoryCardDeck = () => {
   const shelfCtx = useContext(ShelfContext);
-  const shelfData = shelfCtx.shelfData.slice(0, 4);
+  const shelfDataLength = shelfCtx.shelfData.length;
+  // console.log(shelfDataLength);
+  const shelfData = shelfCtx.shelfData.slice(
+    shelfDataLength - 4,
+    shelfDataLength
+  );
 
-  const fourCategoryCards = shelfData.map((item) => {
-    console.log(item.imgUrl);
+  const fourCategoryCards = shelfData.map((item, index) => {
     return (
       <CategoryCard
+        key={index}
         name={item.name}
         shelflife={item.shelflife}
         imgUrl={item.imgUrl}

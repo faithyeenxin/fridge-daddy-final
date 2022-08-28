@@ -17,9 +17,18 @@ let yyyy = today.getFullYear();
 today = yyyy + "-" + mm + "-" + dd;
 const ScrollableList = ({ name }) => {
   const dataCtx = useContext(DataContext);
-
-  const moveToTrashHandler = (data) => {
-    dataCtx.moveToTrash({
+  const removeEvergreenHandler = (data) => {
+    dataCtx.removeEvergreen({
+      id: data.id,
+      item: data.item,
+      quantity: data.quantity,
+      category: data.category,
+      purchaseDate: data.purchaseDate,
+      expiryDate: data.expiryDate,
+    });
+  };
+  const removeRottenHandler = (data) => {
+    dataCtx.removeRotten({
       id: data.id,
       item: data.item,
       quantity: data.quantity,
@@ -29,6 +38,16 @@ const ScrollableList = ({ name }) => {
     });
   };
 
+  const removeFromTrashHandler = (data) => {
+    dataCtx.removeFromTrash({
+      id: data.id,
+      item: data.item,
+      quantity: data.quantity,
+      category: data.category,
+      purchaseDate: data.purchaseDate,
+      expiryDate: data.expiryDate,
+    });
+  };
   const extractedList = dataCtx[name].map((data) => {
     const numOfDays = differenceInDays(
       new Date(data.expiryDate.replace(/-/g, ",")), //theres a bug here
@@ -46,7 +65,11 @@ const ScrollableList = ({ name }) => {
             <IconButton
               edge="end"
               aria-label="delete"
-              onClick={() => moveToTrashHandler(data)}
+              onClick={() =>
+                name === "evergreen"
+                  ? removeEvergreenHandler(data)
+                  : removeRottenHandler(data)
+              }
             >
               <DeleteIcon />
             </IconButton>
@@ -54,7 +77,7 @@ const ScrollableList = ({ name }) => {
             <IconButton
               edge="end"
               aria-label="delete"
-              onClick={() => console.log("trash item was clicked")} //to add removeTrashHandler here
+              onClick={() => removeFromTrashHandler(data)} //to add removeTrashHandler here
             >
               <RestoreFromTrashIcon />
             </IconButton>

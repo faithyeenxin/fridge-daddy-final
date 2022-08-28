@@ -2,9 +2,16 @@ import React, { useReducer } from "react";
 import DataContext from "./data-context.js";
 
 import mockUserData from ".././components/testingFolder/mockUserData";
-
+import differenceInDays from "date-fns/differenceInDays";
 // this defaultDataState will be pulled from airTableAPI and any changes will be updated here too!
 const defaultDataState = mockUserData;
+
+let today = new Date();
+let dd = String(today.getDate()).padStart(2, "0");
+let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+let yyyy = today.getFullYear();
+
+today = yyyy + "-" + mm + "-" + dd;
 
 const dataReducer = (state, action) => {
   let updatedUser;
@@ -29,8 +36,6 @@ const dataReducer = (state, action) => {
       };
       break;
     case "REMOVE_EVERGREEN":
-      console.log(action);
-      console.log(action.type);
       updatedUser = state.username;
       updatedPassword = state.password;
       updatedEvergreen = state.evergreen.filter(
@@ -48,8 +53,6 @@ const dataReducer = (state, action) => {
       };
       break;
     case "REMOVE_ROTTEN":
-      console.log(action);
-      console.log(action.type);
       updatedUser = state.username;
       updatedPassword = state.password;
       updatedEvergreen = state.evergreen;
@@ -63,6 +66,42 @@ const dataReducer = (state, action) => {
         rotten: updatedRotten,
         trashed: updatedTrashed,
       };
+    case "REMOVE_FROM_TRASH":
+      const numOfDays = differenceInDays(
+        new Date(action.item.expiryDate.replace(/-/g, ",")),
+        new Date(today.replace(/-/g, ","))
+      );
+      if (numOfDays > 0) {
+        updatedUser = state.username;
+        updatedPassword = state.password;
+        updatedEvergreen = state.evergreen.concat(action.item);
+        updatedRotten = state.rotten;
+        updatedTrashed = state.trashed.filter(
+          (item) => action.item.id !== item.id
+        );
+        return {
+          username: updatedUser,
+          password: updatedPassword,
+          evergreen: updatedEvergreen,
+          rotten: updatedRotten,
+          trashed: updatedTrashed,
+        };
+      } else {
+        updatedUser = state.username;
+        updatedPassword = state.password;
+        updatedEvergreen = state.evergreen;
+        updatedRotten = state.rotten.concat(action.item);
+        updatedTrashed = state.trashed.filter(
+          (item) => action.item.id !== item.id
+        );
+        return {
+          username: updatedUser,
+          password: updatedPassword,
+          evergreen: updatedEvergreen,
+          rotten: updatedRotten,
+          trashed: updatedTrashed,
+        };
+      }
     default:
       return defaultDataState;
       break;
@@ -87,7 +126,10 @@ const DataProvider = (props) => {
     dispatchDataAction({ type: "REMOVE_ROTTEN", item: item });
   };
 
-  // const removeFromTrashHandler = (item) => {};
+  const removeFromTrashHandler = (item) => {
+    dispatchDataAction({ type: "REMOVE_FROM_TRASH", item: item });
+  };
+
   // const checkEvergreenHandler = (item) => {};
   // const tranferEvergreenToRottenHandler = (item) => {};
   // const transferEvergreenToTrashedHandler = (item) => {};
@@ -102,7 +144,7 @@ const DataProvider = (props) => {
     addEvergreen: addEvergreenHandler,
     removeEvergreen: removeEvergreenHandler,
     removeRotten: removeRottenHandler,
-    // removeFromTrash: removeFromTrashHandler
+    removeFromTrash: removeFromTrashHandler,
     // checkEvergreen: checkEvergreenHandler,
     // transferEvergreenToRotten: tranferEvergreenToRottenHandler,
     // transferEvergreenToTrashed: transferEvergreenToTrashedHandler,
