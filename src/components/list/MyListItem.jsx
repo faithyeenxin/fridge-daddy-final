@@ -81,8 +81,9 @@ const MyListItem = ({ name, descrip }) => {
   const extractedList = extractedCroppedData.map((data) => {
     const numOfDays = differenceInDays(
       new Date(data.expiryDate.replace(/-/g, ",")),
-      new Date(today.replace(/-/g, ","))
+      new Date()
     );
+    console.log(numOfDays);
     let colorOfAvatar = "green";
     if (numOfDays < 0) {
       colorOfAvatar = "red";
@@ -115,7 +116,9 @@ const MyListItem = ({ name, descrip }) => {
         }
       >
         <ListItemAvatar>
-          <Avatar sx={{ backgroundColor: colorOfAvatar }}>{numOfDays}</Avatar>
+          <Avatar sx={{ backgroundColor: colorOfAvatar }}>
+            {numOfDays + 1}
+          </Avatar>
         </ListItemAvatar>
         <ListItemText
           primary={data.item}

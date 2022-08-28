@@ -22,15 +22,13 @@ const AddDateForm = ({ name, handleDateChange, categoryItem }) => {
   }
 
   today = yyyy + "-" + mm + "-" + dd;
-  if (name === "Purchase Date") {
-    helperText = " ";
-  } else if (name === "Expiration Date" && categoryItem !== "") {
-    helperText = `Suggested shelf life is ${
-      shelfCtx.shelfLifeInFocus
-    } day(s): ${format(
+  if (name === "Expiration Date" && categoryItem !== "") {
+    helperText = `Shelf life is ${shelfCtx.shelfLifeInFocus} day(s), ${format(
       addDays(new Date(), shelfCtx.shelfLifeInFocus),
       "d/MM/yyyy"
-    )}`;
+    )} `;
+  } else {
+    helperText = " ";
   }
 
   return (
