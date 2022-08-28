@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Grid, TextField } from "@mui/material";
 import ShelfContext from "../../../contextStore/shelfLife-context";
+import addDays from "date-fns/addDays";
+import format from "date-fns/format";
 const AddDateForm = ({ name, handleDateChange, categoryItem }) => {
   const shelfCtx = useContext(ShelfContext);
   let today = new Date();
@@ -23,7 +25,12 @@ const AddDateForm = ({ name, handleDateChange, categoryItem }) => {
   if (name === "Purchase Date") {
     helperText = " ";
   } else if (name === "Expiration Date" && categoryItem !== "") {
-    helperText = `Suggested shelf life is ${shelfCtx.shelfLifeInFocus} days`;
+    helperText = `Suggested shelf life is ${
+      shelfCtx.shelfLifeInFocus
+    } day(s): ${format(
+      addDays(new Date(), shelfCtx.shelfLifeInFocus),
+      "d/MM/yyyy"
+    )}`;
   }
 
   return (
