@@ -14,8 +14,8 @@
 */
 
 const mockUserData = {
-  username: "",
-  password: "",
+  username: "Faith",
+  password: "123456",
   evergreen: [
     {
       id: "214564658425",

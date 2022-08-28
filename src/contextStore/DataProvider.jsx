@@ -6,6 +6,46 @@ import differenceInDays from "date-fns/differenceInDays";
 // this defaultDataState will be pulled from airTableAPI and any changes will be updated here too!
 const defaultDataState = mockUserData;
 
+/*
+mockUserData is an object like below
+const mockUserData = {
+  username: "Faith",
+  password: "123456",
+  evergreen: [
+    {
+      id: "214564658425",
+      item: "fish",
+      quantity: " 3 fillet",
+      category: "fish",
+      purchaseDate: "2022-08-26",
+      expiryDate: "2022-09-05",
+    },
+    
+  ],
+  rotten: [
+    {
+      id: "123213546",
+      item: "steamed eggs",
+      quantity: "12 eggs",
+      category: "eggs",
+      purchaseDate: "2021-08-26",
+      expiryDate: "2022-06-12",
+    },
+  ],
+  trashed: [
+    {
+      id: "123654662",
+      item: "banana",
+      quantity: "1 bunch",
+      category: "fruit",
+      purchaseDate: "2022-08-26",
+      expiryDate: "2022-01-05",
+    },
+    
+  ],
+};
+*/
+
 let today = new Date();
 let dd = String(today.getDate()).padStart(2, "0");
 let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -129,10 +169,7 @@ const DataProvider = (props) => {
   const removeFromTrashHandler = (item) => {
     dispatchDataAction({ type: "REMOVE_FROM_TRASH", item: item });
   };
-
   // const checkEvergreenHandler = (item) => {};
-  // const tranferEvergreenToRottenHandler = (item) => {};
-  // const transferEvergreenToTrashedHandler = (item) => {};
 
   const dataContext = {
     //this is the concrete data which we will update overtime and pass to our context
@@ -146,8 +183,6 @@ const DataProvider = (props) => {
     removeRotten: removeRottenHandler,
     removeFromTrash: removeFromTrashHandler,
     // checkEvergreen: checkEvergreenHandler,
-    // transferEvergreenToRotten: tranferEvergreenToRottenHandler,
-    // transferEvergreenToTrashed: transferEvergreenToTrashedHandler,
   };
 
   return (

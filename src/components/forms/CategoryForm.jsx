@@ -6,8 +6,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState, useContext } from "react";
 import Image from "/images/green_apple_opacity.png";
+import ShelfContext from "../../contextStore/shelfLife-context";
+import DataContext from "../../contextStore/data-context";
 
 const buttonSx = {
   backgroundColor: "#f93f23",
@@ -21,7 +23,43 @@ const buttonSx = {
   padding: "0.5rem 1.5rem",
 };
 
+let today = new Date();
+let dd = today.getDate();
+let mm = today.getMonth() + 1; // this is because January is 0!
+let yyyy = today.getFullYear();
+
+let helperText;
+// let [minDate, setMinDate] = useState("");
+
+if (dd < 10) {
+  dd = "0" + dd;
+}
+
+if (mm < 10) {
+  mm = "0" + mm;
+}
+
+today = yyyy + "-" + mm + "-" + dd;
+
 const CategoryForm = () => {
+  const shelfCtx = useContext(ShelfContext);
+  const dataCtx = useContext(DataContext);
+
+  const [categoryInput, setCategoryInput] = useState("");
+  const [shelfLifeInput, setShelfLifeInput] = useState("");
+
+  const handleSubmit = () => {
+    console.log(categoryInput, shelfLifeInput);
+    shelfCtx.addShelfData({
+      id: Math.random(), //to change this to it's respective id found when calling API
+      name: categoryInput,
+      shelflife: shelfLifeInput,
+      dateAdded: today,
+      contributor: dataCtx.username,
+      imgUrl: "image will be found using API call to spoonacular",
+    });
+  };
+
   return (
     <Paper
       sx={{
@@ -58,6 +96,7 @@ const CategoryForm = () => {
               variant="filled"
               label="category name"
               size="small"
+              onChange={(e) => setCategoryInput(e.target.value)}
               helperText=" "
             />
           </Grid>
@@ -76,11 +115,13 @@ const CategoryForm = () => {
               variant="filled"
               label="shelf life in days"
               size="small"
+              type="number"
+              onChange={(e) => setShelfLifeInput(e.target.value)}
               helperText="please only input integers!"
             />
           </Grid>
         </Grid>
-        <Button variant="primary" sx={buttonSx}>
+        <Button variant="primary" sx={buttonSx} onClick={handleSubmit}>
           Submit
         </Button>
       </Container>

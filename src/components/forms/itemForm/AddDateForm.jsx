@@ -21,8 +21,8 @@ const AddDateForm = ({ name, handleDateChange, categoryItem }) => {
   today = yyyy + "-" + mm + "-" + dd;
   if (name === "Purchase Date") {
     helperText = " ";
-  } else if (name === "Expiration Date") {
-    helperText = `Suggested shelf life is ${categoryItem} day(s)!`;
+  } else if (name === "Expiration Date" && categoryItem !== "") {
+    helperText = `Suggested shelf life is ${categoryItem} days`;
   }
 
   return (

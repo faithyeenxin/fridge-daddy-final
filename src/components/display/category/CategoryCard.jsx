@@ -30,7 +30,8 @@ const CategoryCard = ({ name, shelflife, imgUrl }) => {
     >
       <Card sx={{ display: "flex" }}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <CardContent sx={{ flex: "1 0 auto" }}>
+          {/* sx={{ flex: "1 0 auto" }} */}
+          <CardContent sx={{ width: "80%", height: "100%" }}>
             <Typography component="div" variant="h5">
               {name}
             </Typography>
@@ -38,6 +39,7 @@ const CategoryCard = ({ name, shelflife, imgUrl }) => {
               variant="subtitle1"
               color="text.secondary"
               component="div"
+              fullWidth
             >
               {shelflife} days
             </Typography>
@@ -46,7 +48,7 @@ const CategoryCard = ({ name, shelflife, imgUrl }) => {
         </Box>
         <CardMedia
           component="img"
-          sx={{ width: 200, height: 200 }}
+          sx={{ width: 150, height: 150 }}
           image={imgUrl}
           alt="Live from space album cover"
         />

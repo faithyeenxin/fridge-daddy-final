@@ -15,17 +15,26 @@ mockShelfLifeData is a list of objects like below
 };
 */
 
-const defaultShelfLifeState = mockShelfLifeData;
+const defaultShelfLifeState = { shelfData: mockShelfLifeData };
 
-const shelfLifeReducer = (state, action) => {};
+const shelfLifeReducer = (state, action) => {
+  switch (action.type) {
+    case "ADD_SHELF":
+      const newShelfList = state.shelfData.concat(action.item);
+      console.log("new shelf life list");
+      console.log(newShelfList);
+      return { shelfData: newShelfList };
+  }
+};
 
 const ShelfLifeProvider = (props) => {
   const [shelfState, dispatchShelfAction] = useReducer(
     shelfLifeReducer,
     defaultShelfLifeState
   );
-  const addShelfDataHandler = () => {
+  const addShelfDataHandler = (item) => {
     console.log("adding to shelf");
+    dispatchShelfAction({ type: "ADD_SHELF", item: item });
   };
 
   const removeShelfDataHandler = () => {
@@ -33,7 +42,7 @@ const ShelfLifeProvider = (props) => {
   };
 
   const shelfLifeContext = {
-    shelfData: shelfState,
+    shelfData: shelfState.shelfData,
     addShelfData: addShelfDataHandler,
     removeShelfData: removeShelfDataHandler,
   };
