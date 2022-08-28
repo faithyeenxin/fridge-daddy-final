@@ -83,7 +83,7 @@ const MyListItem = ({ name, descrip }) => {
       new Date(data.expiryDate.replace(/-/g, ",")),
       new Date()
     );
-    console.log(numOfDays);
+    // console.log(numOfDays);
     let colorOfAvatar = "green";
     if (numOfDays < 0) {
       colorOfAvatar = "red";
