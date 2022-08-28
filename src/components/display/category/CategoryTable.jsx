@@ -1,83 +1,28 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Grid } from "@mui/material";
-
-// {
-//   id: data.id,
-//   item: data.item,
-//   quantity: data.quantity,
-//   category: data.category,
-//   purchaseDate: data.purchaseDate,
-//   expiryDate: data.expiryDate,
-// }
-
-const columns = [
-  { field: "name", headerName: "Name", width: 300 },
-  { field: "shelfLife", headerName: "Shelf life (Days)", width: 300 },
-  { field: "dateAdded", headerName: "Date Added", width: 300 },
-  { field: "contributer", headerName: "Contributer", width: 300 },
-];
-
-const rows = [
-  {
-    id: 1,
-    name: "Veggies",
-    shelfLife: 3,
-    dateAdded: "16/12/22",
-    contributer: "Alice",
-  },
-  {
-    id: 2,
-    name: "Fish",
-    shelfLife: 2,
-    dateAdded: "03/02/22",
-    contributer: "Mary",
-  },
-  {
-    id: 3,
-    name: "Potatoes",
-    shelfLife: 10,
-    dateAdded: "09/08/22",
-    contributer: "Leonard",
-  },
-  {
-    id: 4,
-    name: "Apples",
-    shelfLife: 7,
-    dateAdded: "15/01/22",
-    contributer: "Elvis",
-  },
-  {
-    id: 5,
-    name: "Raw Eggs",
-    shelfLife: 35,
-    dateAdded: "07/12/22",
-    contributer: "Clarence",
-  },
-  {
-    id: 6,
-    name: "Cooked Eggs",
-    shelfLife: 7,
-    dateAdded: "31/12/22",
-    contributer: "Justin",
-  },
-  {
-    id: 7,
-    name: "Pastry",
-    shelfLife: 7,
-    dateAdded: "04/05/22",
-    contributer: "Julian",
-  },
-  {
-    id: 8,
-    name: "Fruit",
-    shelfLife: 7,
-    dateAdded: "5/11/22",
-    contributer: "Donnie",
-  },
-];
+import ShelfContext from "../../../contextStore/shelfLife-context";
+/*
+{
+  id: "rec1koHMBhfW8dt8r",
+  name: "hard cheese",
+  shelflife: "31",
+  dateAdded: "2022-08-26",
+  contributor: "Faith ",
+  imgUrl: "https://spoonacular.com/cdn/ingredients_250x250/brie.jpg",
+} 
+*/
 
 const CategoryTable = () => {
+  const shelfCtx = useContext(ShelfContext);
+  const columns = [
+    { field: "name", headerName: "Name", width: 300 },
+    { field: "shelflife", headerName: "Shelf life (Days)", width: 300 },
+    { field: "dateAdded", headerName: "Date Added", width: 300 },
+    { field: "contributor", headerName: "Contributer", width: 300 },
+  ];
+
+  const rows = shelfCtx.shelfData;
   return (
     <Grid
       item

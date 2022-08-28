@@ -17,7 +17,6 @@ const containsText = (text, searchText) =>
   text.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
 
 //this should get data from API
-// const allOptions = ["+ Add Category", "Fruit", "Meat", "Vegetable", "Fish"];
 const shelfLifeOptions = [
   {
     name: "+ add category",
@@ -28,7 +27,7 @@ const AddCategoryForm = ({ handleCategoryChange }) => {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("");
   const [searchText, setSearchText] = useState("");
-
+  const [shelfLife, setShelfLife] = useState("");
   // The React useMemo Hook returns a memorized value
   const displayedOptions = useMemo(
     () =>
@@ -49,8 +48,10 @@ const AddCategoryForm = ({ handleCategoryChange }) => {
       }}
     >
       <FormControl fullWidth>
+        {/* this does the input */}
         <TextField
           required
+          name="this could be a way to pass the value of category but idk how"
           variant="filled"
           label="category"
           select
@@ -60,14 +61,18 @@ const AddCategoryForm = ({ handleCategoryChange }) => {
           helperText="We'll suggest an expiration date!"
           onChange={(e) => {
             setSelectedOption(e.target.value);
+            //handleCategoryChange only passes back the value but i want it to pass back more info... how?
             handleCategoryChange(e);
           }}
-          onClose={() => setSearchText("")}
+          onClose={() => {
+            setSearchText("");
+          }}
           // This prevents rendering empty string in Select's value
           // if search text would exclude currently selected option.
           renderValue={() => selectedOption}
         >
           <ListSubheader>
+            {/* this does the seach */}
             <TextField
               size="small"
               // Autofocus on textfield

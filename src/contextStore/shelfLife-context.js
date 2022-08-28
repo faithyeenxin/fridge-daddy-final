@@ -1,9 +1,9 @@
 import React from "react";
 
-const ShelfLifeContext = React.createContext({
-  shelfLifeData: [],
-  addShelfLifeData: () => {},
-  removeShelfLifeData: () => {},
+const ShelfContext = React.createContext({
+  shelfData: [],
+  addShelfData: () => {},
+  removeShelfData: () => {},
 });
 
-export default ShelfLifeContext;
+export default ShelfContext;

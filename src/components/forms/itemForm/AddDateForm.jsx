@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Grid, TextField } from "@mui/material";
 
 const AddDateForm = ({ name, handleDateChange, categoryItem }) => {
@@ -22,7 +22,7 @@ const AddDateForm = ({ name, handleDateChange, categoryItem }) => {
   if (name === "Purchase Date") {
     helperText = " ";
   } else if (name === "Expiration Date") {
-    helperText = categoryItem;
+    helperText = `Suggested shelf life is ${categoryItem} day(s)!`;
   }
 
   return (

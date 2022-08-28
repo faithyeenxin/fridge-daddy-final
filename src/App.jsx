@@ -11,28 +11,28 @@ import Recipes from "./pages/Recipes";
 import AddCategory from "./pages/AddCategory";
 
 import DataProvider from "./contextStore/DataProvider";
-// import ShelfLifeProvider from "./contextStore/ShelfLifeProvider";
+import ShelfLifeProvider from "./contextStore/ShelfLifeProvider";
 
 function App() {
   return (
-    // <ShelfLifeProvider>
-    <DataProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Start />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/evergreen" element={<Evergreen />} />
-            <Route path="/baddies" element={<Baddies />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/category" element={<AddCategory />} />
-            <Route path="/user" element={<User />} />
-            <Route path="/recipes" element={<Recipes />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </DataProvider>
-    // </ShelfLifeProvider>
+    <ShelfLifeProvider>
+      <DataProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Start />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/evergreen" element={<Evergreen />} />
+              <Route path="/baddies" element={<Baddies />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/category" element={<AddCategory />} />
+              <Route path="/user" element={<User />} />
+              <Route path="/recipes" element={<Recipes />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </DataProvider>
+    </ShelfLifeProvider>
   );
 }
 
