@@ -6,10 +6,15 @@ import RestoreFromTrashIcon from "@mui/icons-material/RestoreFromTrash";
 import IconButton from "@mui/material/IconButton";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
-// import mockUserData from "../testingFolder/mockUserData";
+import differenceInDays from "date-fns/differenceInDays";
 
 import DataContext from "../../contextStore/data-context";
 
+let today = new Date();
+let dd = String(today.getDate()).padStart(2, "0");
+let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+let yyyy = today.getFullYear();
+today = yyyy + "-" + mm + "-" + dd;
 const ScrollableList = ({ name }) => {
   const dataCtx = useContext(DataContext);
 
@@ -25,6 +30,14 @@ const ScrollableList = ({ name }) => {
   };
 
   const extractedList = dataCtx[name].map((data) => {
+    const numOfDays = differenceInDays(
+      new Date(data.expiryDate.replace(/-/g, ",")),
+      new Date(today.replace(/-/g, ","))
+    );
+    let colorOfAvatar = "green";
+    if (numOfDays < 0) {
+      colorOfAvatar = "red";
+    }
     return (
       <ListItem
         key={`${data.item}-${data.category}-${Math.random()}`}
@@ -50,7 +63,7 @@ const ScrollableList = ({ name }) => {
       >
         <ListItemAvatar>
           <Avatar>
-            <FolderIcon />
+            <Avatar sx={{ backgroundColor: colorOfAvatar }}>{numOfDays}</Avatar>
           </Avatar>
         </ListItemAvatar>
         <ListItemText
@@ -80,7 +93,7 @@ const ScrollableList = ({ name }) => {
           maxHeight: 500,
         }}
       >
-        {/* {extractedList} */}
+        {extractedList}
       </List>
     </Paper>
   );
