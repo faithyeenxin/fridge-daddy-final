@@ -63,8 +63,13 @@ const AddCategoryForm = ({ handleCategoryChange }) => {
           onChange={(e) => {
             setSelectedOption(e.target.value);
             setSearchText("");
-            //handleCategoryChange only passes back the value but i want it to pass back more info... how?
+            /*
+            handleCategoryChange only passes back the category value 
+            so that when form is submitted all data can be collected. 
+            it is unable to pass shelf life for some reason
+            */
             handleCategoryChange(e);
+            shelfCtx.displayShelfData(e);
           }}
           onClose={() => {
             setSearchText("");

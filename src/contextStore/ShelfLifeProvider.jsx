@@ -18,12 +18,33 @@ mockShelfLifeData is a list of objects like below
 const defaultShelfLifeState = { shelfData: mockShelfLifeData };
 
 const shelfLifeReducer = (state, action) => {
+  let newShelfList;
+  let newShelfLifeInFocus;
   switch (action.type) {
     case "ADD_SHELF":
-      const newShelfList = state.shelfData.concat(action.item);
+      newShelfList = state.shelfData.concat(action.item);
+      newShelfLifeInFocus = state.shelfLifeInFocus;
       console.log("new shelf life list");
       console.log(newShelfList);
-      return { shelfData: newShelfList };
+      return {
+        shelfData: newShelfList,
+        shelfLifeInFocus: newShelfLifeInFocus,
+      };
+
+    case "DISPLAY_SHELF":
+      console.log(action.item.target.value);
+      // to check through shelf life data and return the shelf life day
+      const result = state.shelfData.filter(
+        (item) => item.name === action.item.target.value
+      );
+      const firstResult = result[0];
+      console.log(firstResult.shelflife);
+      newShelfList = state.shelfData;
+      newShelfLifeInFocus = firstResult.shelflife;
+      return {
+        shelfData: newShelfList,
+        shelfLifeInFocus: newShelfLifeInFocus,
+      };
   }
 };
 
@@ -41,10 +62,17 @@ const ShelfLifeProvider = (props) => {
     console.log("removing from shelf");
   };
 
+  const displayShelfDataHandler = (item) => {
+    console.log("displaying shelf life");
+    dispatchShelfAction({ type: "DISPLAY_SHELF", item: item });
+  };
+
   const shelfLifeContext = {
     shelfData: shelfState.shelfData,
+    shelfLifeInFocus: shelfState.shelfLifeInFocus,
     addShelfData: addShelfDataHandler,
     removeShelfData: removeShelfDataHandler,
+    displayShelfData: displayShelfDataHandler,
   };
   return (
     <ShelfContext.Provider value={shelfLifeContext}>
