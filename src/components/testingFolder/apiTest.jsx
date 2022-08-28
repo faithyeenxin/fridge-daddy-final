@@ -80,3 +80,21 @@ const deleteRecord = async (id) => {
   const deletedRecord = await shelfLifeTable.destroy(id);
   console.log(deletedRecord);
 };
+
+//////////////////////////////////////////////////////
+//// * Update/Replace a Record
+//// * (.update(), .replace())
+//////////////////////////////////////////////////////
+
+const updateRecord = async (id, fields) => {
+  const updatedRecord = await shelfLifeTable.update(id, fields);
+  console.log(updatedRecord);
+};
+
+const replaceRecord = async (id, fields) => {
+  const replacedRecord = await shelfLifeTable.replace(id, fields);
+  console.log(replacedRecord);
+};
+
+// updateRecord("recQVqVLVx9HDjXaA", { shelflife: "10" });
+// replaceRecord("recQVqVLVx9HDjXaA", { name: "banana pie", shelflife: "5" });

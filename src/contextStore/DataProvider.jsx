@@ -28,7 +28,8 @@ const dataReducer = (state, action) => {
         trashed: updatedTrashed,
       };
       break;
-    case "REMOVE_ITEM":
+    case "REMOVE_EVERGREEN":
+      console.log(action);
       console.log(action.type);
       updatedUser = state.username;
       updatedPassword = state.password;
@@ -46,6 +47,22 @@ const dataReducer = (state, action) => {
         trashed: updatedTrashed,
       };
       break;
+    case "REMOVE_ROTTEN":
+      console.log(action);
+      console.log(action.type);
+      updatedUser = state.username;
+      updatedPassword = state.password;
+      updatedEvergreen = state.evergreen;
+      updatedRotten = state.rotten.filter((item) => action.item.id !== item.id);
+      updatedTrashed = state.trashed.concat(action.item);
+
+      return {
+        username: updatedUser,
+        password: updatedPassword,
+        evergreen: updatedEvergreen,
+        rotten: updatedRotten,
+        trashed: updatedTrashed,
+      };
     default:
       return defaultDataState;
       break;
@@ -62,9 +79,14 @@ const DataProvider = (props) => {
     dispatchDataAction({ type: "ADD_EVERGREEN", item: item });
   };
 
-  const moveToTrashHandler = (item) => {
-    dispatchDataAction({ type: "REMOVE_ITEM", item: item });
+  const removeEvergreenHandler = (item) => {
+    dispatchDataAction({ type: "REMOVE_EVERGREEN", item: item });
   };
+
+  const removeRottenHandler = (item) => {
+    dispatchDataAction({ type: "REMOVE_ROTTEN", item: item });
+  };
+
   // const removeFromTrashHandler = (item) => {};
   // const checkEvergreenHandler = (item) => {};
   // const tranferEvergreenToRottenHandler = (item) => {};
@@ -78,7 +100,8 @@ const DataProvider = (props) => {
     rotten: dataState.rotten,
     trashed: dataState.trashed,
     addEvergreen: addEvergreenHandler,
-    moveToTrash: moveToTrashHandler,
+    removeEvergreen: removeEvergreenHandler,
+    removeRotten: removeRottenHandler,
     // removeFromTrash: removeFromTrashHandler
     // checkEvergreen: checkEvergreenHandler,
     // transferEvergreenToRotten: tranferEvergreenToRottenHandler,

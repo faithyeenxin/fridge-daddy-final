@@ -37,8 +37,19 @@ const MyListItem = ({ name, descrip }) => {
   const lastItemIndex = extractedData.length;
 
   let extractedCroppedData;
-  const moveToTrashHandler = (data) => {
-    dataCtx.moveToTrash({
+  const removeEvergreenHandler = (data) => {
+    dataCtx.removeEvergreen({
+      id: data.id,
+      item: data.item,
+      quantity: data.quantity,
+      category: data.category,
+      purchaseDate: data.purchaseDate,
+      expiryDate: data.expiryDate,
+    });
+  };
+
+  const removeRottenHandler = (data) => {
+    dataCtx.removeRotten({
       id: data.id,
       item: data.item,
       quantity: data.quantity,
@@ -74,7 +85,11 @@ const MyListItem = ({ name, descrip }) => {
             <IconButton
               edge="end"
               aria-label="delete"
-              onClick={() => moveToTrashHandler(data)}
+              onClick={() =>
+                name === "Evergreen"
+                  ? removeEvergreenHandler(data)
+                  : removeRottenHandler(data)
+              }
             >
               <DeleteIcon />
             </IconButton>
