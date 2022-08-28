@@ -1,12 +1,13 @@
 import React from "react";
 
 const DataContext = React.createContext({
-  user: "",
+  username: "",
+  password: "",
   evergreen: [],
   rotten: [],
   trashed: [],
   checkEvergreen: () => {},
-  removeEvergreen: () => {},
+  moveToTrash: () => {},
   addEvergreen: () => {},
   transferEvergreenToRotten: () => {},
   transferEvergreenToTrashed: () => {},

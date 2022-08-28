@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@date-io/date-fns": "^2.15.0",
+    "@date-io/jalaali": "^2.15.0",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@mui/icons-material": "^5.10.2",

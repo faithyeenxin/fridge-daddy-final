@@ -7,10 +7,6 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import AddCategoryForm from "./itemForm/AddCategoryForm";
-import AddDateForm from "./itemForm/AddDateForm";
-import AddFoodForm from "./itemForm/AddFoodForm";
-import AddQuantityForm from "./itemForm/AddQuantityForm";
 import Image from "/images/green_apple_opacity.png";
 
 const buttonSx = {

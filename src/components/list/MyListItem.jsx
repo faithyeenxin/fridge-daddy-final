@@ -10,9 +10,10 @@ import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Card, CardActions, CardHeader, CardContent } from "@mui/material";
 import { Button } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../../contextStore/data-context";
+import differenceInDays from "date-fns/differenceInDays";
 
 const buttonSx = {
   margin: "0 auto",
@@ -22,21 +23,28 @@ const buttonSx = {
   letterSpacing: 1,
 };
 
+let today = new Date();
+let dd = String(today.getDate()).padStart(2, "0");
+let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+let yyyy = today.getFullYear();
+
+today = yyyy + "-" + mm + "-" + dd;
+
 const MyListItem = ({ name, descrip }) => {
   const navigate = useNavigate();
   const dataCtx = useContext(DataContext);
   const extractedData = dataCtx[name.toLowerCase()];
   const lastItemIndex = extractedData.length;
-  let extractedCroppedData;
 
+  let extractedCroppedData;
   const moveToTrashHandler = (data) => {
     dataCtx.moveToTrash({
       id: data.id,
       item: data.item,
       quantity: data.quantity,
       category: data.category,
-      purchaseDate: data.purchaseDateItem,
-      expiryDate: data.expiryDateItem,
+      purchaseDate: data.purchaseDate,
+      expiryDate: data.expiryDate,
     });
   };
 
@@ -50,6 +58,14 @@ const MyListItem = ({ name, descrip }) => {
   }
 
   const extractedList = extractedCroppedData.map((data) => {
+    const numOfDays = differenceInDays(
+      new Date(data.expiryDate.replace(/-/g, ",")),
+      new Date(today.replace(/-/g, ","))
+    );
+    let colorOfAvatar = "green";
+    if (numOfDays < 0) {
+      colorOfAvatar = "red";
+    }
     return (
       <ListItem
         key={`${data.item}-${data.category}-${Math.random()}`}
@@ -74,9 +90,7 @@ const MyListItem = ({ name, descrip }) => {
         }
       >
         <ListItemAvatar>
-          <Avatar>
-            <FolderIcon />
-          </Avatar>
+          <Avatar sx={{ backgroundColor: colorOfAvatar }}>{numOfDays}</Avatar>
         </ListItemAvatar>
         <ListItemText
           primary={data.item}

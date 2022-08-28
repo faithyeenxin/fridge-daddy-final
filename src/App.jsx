@@ -11,9 +11,11 @@ import Recipes from "./pages/Recipes";
 import AddCategory from "./pages/AddCategory";
 
 import DataProvider from "./contextStore/DataProvider";
+// import ShelfLifeProvider from "./contextStore/ShelfLifeProvider";
 
 function App() {
   return (
+    // <ShelfLifeProvider>
     <DataProvider>
       <BrowserRouter>
         <Routes>
@@ -30,6 +32,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </DataProvider>
+    // </ShelfLifeProvider>
   );
 }
 

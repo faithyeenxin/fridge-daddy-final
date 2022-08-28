@@ -9,22 +9,32 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SearchIcon from "@mui/icons-material/Search";
+
+import mockShelfLifeData from "../../testingFolder/mockShelfLifeData";
 
 const containsText = (text, searchText) =>
   text.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
 
-const allOptions = ["+ Add Category", "Fruit", "Meat", "Vegetable", "Fish"];
-
+//this should get data from API
+// const allOptions = ["+ Add Category", "Fruit", "Meat", "Vegetable", "Fish"];
+const shelfLifeOptions = [
+  {
+    name: "+ add category",
+  },
+  ...mockShelfLifeData,
+];
 const AddCategoryForm = ({ handleCategoryChange }) => {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("");
   const [searchText, setSearchText] = useState("");
 
-  // The React useMemo Hook returns a memoized value
+  // The React useMemo Hook returns a memorized value
   const displayedOptions = useMemo(
-    () => allOptions.filter((option) => containsText(option, searchText)),
+    () =>
+      shelfLifeOptions.filter((option) =>
+        containsText(option.name, searchText)
+      ),
     [searchText]
   );
   return (
@@ -83,13 +93,13 @@ const AddCategoryForm = ({ handleCategoryChange }) => {
             />
           </ListSubheader>
           {displayedOptions.map((option, i) =>
-            option !== "+ Add Category" ? (
-              <MenuItem key={i} value={option}>
-                {option}
+            option.name !== "+ add category" ? (
+              <MenuItem key={i} value={option.name}>
+                {option.name}
               </MenuItem>
             ) : (
               <MenuItem key={i} onClick={() => navigate("/category")}>
-                {option}
+                {option.name}
               </MenuItem>
             )
           )}

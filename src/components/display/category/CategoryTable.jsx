@@ -2,6 +2,15 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Grid } from "@mui/material";
 
+// {
+//   id: data.id,
+//   item: data.item,
+//   quantity: data.quantity,
+//   category: data.category,
+//   purchaseDate: data.purchaseDate,
+//   expiryDate: data.expiryDate,
+// }
+
 const columns = [
   { field: "name", headerName: "Name", width: 300 },
   { field: "shelfLife", headerName: "Shelf life (Days)", width: 300 },
