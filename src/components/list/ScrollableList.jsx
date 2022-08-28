@@ -24,14 +24,14 @@ const ScrollableList = ({ name }) => {
       item: data.item,
       quantity: data.quantity,
       category: data.category,
-      purchaseDate: data.purchaseDateItem,
-      expiryDate: data.expiryDateItem,
+      purchaseDate: data.purchaseDate,
+      expiryDate: data.expiryDate,
     });
   };
 
   const extractedList = dataCtx[name].map((data) => {
     const numOfDays = differenceInDays(
-      new Date(data.expiryDate.replace(/-/g, ",")),
+      new Date(data.expiryDate.replace(/-/g, ",")), //theres a bug here
       new Date(today.replace(/-/g, ","))
     );
     let colorOfAvatar = "green";
@@ -42,7 +42,7 @@ const ScrollableList = ({ name }) => {
       <ListItem
         key={`${data.item}-${data.category}-${Math.random()}`}
         secondaryAction={
-          name !== "Trashed" ? (
+          name !== "trashed" ? (
             <IconButton
               edge="end"
               aria-label="delete"
