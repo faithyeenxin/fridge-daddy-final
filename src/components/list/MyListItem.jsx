@@ -77,7 +77,7 @@ const MyListItem = ({ name, descrip }) => {
 
   const extractedList = extractedCroppedData.map((data) => {
     const numOfDays = differenceInDays(new Date(data.expiryDate), new Date());
-    console.log(numOfDays);
+    // console.log(numOfDays);
     let colorOfAvatar = "green";
 
     if (numOfDays < 0) {
@@ -167,10 +167,3 @@ const MyListItem = ({ name, descrip }) => {
 };
 
 export default MyListItem;
-
-// let today = new Date();
-// let dd = String(today.getDate()).padStart(2, "0");
-// let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-// let yyyy = today.getFullYear();
-
-// today = yyyy + "-" + mm + "-" + dd;
