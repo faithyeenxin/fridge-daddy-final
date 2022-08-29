@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useContext } from "react";
+import React, { useMemo, useState, useContext, useEffect } from "react";
 import {
   FormControl,
   InputAdornment,
@@ -12,31 +12,21 @@ import { Grid } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ShelfContext from "../../../contextStore/shelfLife-context";
 
-const containsText = (text, searchText) =>
-  text.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
-
 //this should get data from API
 
 const AddCategoryForm = ({ handleCategoryChange }) => {
   const shelfCtx = useContext(ShelfContext);
-  const shelfLifeOptions = [
-    {
-      name: "+ add category",
-    },
-    ...shelfCtx.shelfData,
-  ];
   const navigate = useNavigate();
-  const [selectedOption, setSelectedOption] = useState("");
+  const shelfLifeOptions = shelfCtx.shelfData;
   const [searchText, setSearchText] = useState("");
 
-  // The React useMemo Hook returns a memorized value
-  const displayedOptions = useMemo(
-    () =>
-      shelfLifeOptions.filter((option) =>
-        containsText(option.name, searchText)
-      ),
-    [searchText]
-  );
+  const options =
+    searchText === ""
+      ? shelfLifeOptions
+      : shelfLifeOptions.filter((option) => {
+          return option.name.includes(searchText);
+        });
+
   return (
     <Grid
       item
@@ -52,7 +42,6 @@ const AddCategoryForm = ({ handleCategoryChange }) => {
         {/* this does the input */}
         <TextField
           required
-          name="this could be a way to pass the value of category but idk how"
           variant="filled"
           label="category"
           select
@@ -61,25 +50,16 @@ const AddCategoryForm = ({ handleCategoryChange }) => {
           margin="normal"
           helperText="We'll suggest an expiration date!"
           onChange={(e) => {
-            setSelectedOption(e.target.value);
             setSearchText("");
-            /*
-            handleCategoryChange only passes back the category value 
-            so that when form is submitted all data can be collected. 
-            it is unable to pass shelf life for some reason
-            */
             handleCategoryChange(e);
             shelfCtx.displayShelfData(e);
           }}
           onClose={() => {
             setSearchText("");
           }}
-          // This prevents rendering empty string in Select's value
-          // if search text would exclude currently selected option.
-          renderValue={() => selectedOption}
         >
           <ListSubheader>
-            {/* this does the seach */}
+            {/* this does the search */}
             <TextField
               size="small"
               // Autofocus on textfield
@@ -95,6 +75,7 @@ const AddCategoryForm = ({ handleCategoryChange }) => {
               }}
               onChange={(e) => {
                 setSearchText(e.target.value);
+                // setSearchText(e.target.value);
               }}
               onKeyDown={(e) => {
                 if (e.key !== "Escape") {
@@ -104,7 +85,7 @@ const AddCategoryForm = ({ handleCategoryChange }) => {
               }}
             />
           </ListSubheader>
-          {displayedOptions.map((option, i) =>
+          {options.map((option, i) =>
             option.name !== "+ add category" ? (
               <MenuItem key={i} value={option.name}>
                 {option.name}

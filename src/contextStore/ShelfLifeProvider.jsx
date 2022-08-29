@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import ShelfContext from "./shelfLife-context.js";
 
 import mockShelfLifeData from "../components/testingFolder/mockShelfLifeData";
@@ -15,7 +15,7 @@ mockShelfLifeData is a list of objects like below
 };
 */
 
-const defaultShelfLifeState = { shelfData: mockShelfLifeData };
+const defaultShelfLifeState = { shelfData: [] };
 
 const shelfLifeReducer = (state, action) => {
   let newShelfList;
@@ -45,14 +45,65 @@ const shelfLifeReducer = (state, action) => {
         shelfData: newShelfList,
         shelfLifeInFocus: newShelfLifeInFocus,
       };
+    case "GET_SHELF":
+      newShelfList = action.item;
+      newShelfLifeInFocus = state.newShelfLifeInFocus;
+      // console.log(newShelfList);
+      return {
+        shelfData: newShelfList,
+        shelfLifeInFocus: newShelfLifeInFocus,
+      };
   }
 };
 
+//////////////////////////////////////////////////////
+//// * AirTable
+//////////////////////////////////////////////////////
+
+import Airtable from "airtable";
+const base = new Airtable({ apiKey: "keyh0OZHb1wxgrmg4" }).base(
+  "appwwF2bdRhaVnPBM"
+);
+const shelfLifeTable = base("shelfLife");
+// this defaultDataState will be pulled from airTableAPI and any changes will be updated here too!
+
+const getRecords = async () => {
+  const records = await shelfLifeTable.select().all();
+  // console.log("length of records: " + records.length);
+  const filteredRecords = records.map((record) => {
+    return {
+      id: record.id,
+      name: record.fields.name,
+      shelflife: record.fields.shelflife,
+      dateAdded: record.fields.dateAdded,
+      contributor: record.fields.contributor,
+      imgUrl: record.fields.imgUrl,
+    };
+  });
+  return filteredRecords;
+};
+
 const ShelfLifeProvider = (props) => {
+  const [status, setStatus] = useState("idle");
+  useEffect(() => {
+    setStatus("pending");
+    getRecords()
+      .then((res) => {
+        dispatchShelfAction({ type: "GET_SHELF", item: res });
+      })
+      .then(() => {
+        setStatus("resolved");
+      })
+      .catch((error) => {
+        setStatus("error");
+      });
+  }, []);
+
   const [shelfState, dispatchShelfAction] = useReducer(
     shelfLifeReducer,
     defaultShelfLifeState
   );
+
   const addShelfDataHandler = (item) => {
     console.log("adding to shelf");
     dispatchShelfAction({ type: "ADD_SHELF", item: item });

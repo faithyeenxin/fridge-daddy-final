@@ -1,12 +1,9 @@
-import React, { useReducer } from "react";
+import React, { useState, useReducer } from "react";
 import DataContext from "./data-context.js";
 
 import mockUserData from ".././components/testingFolder/mockUserData";
 import differenceInDays from "date-fns/differenceInDays";
 import format from "date-fns/format";
-
-// this defaultDataState will be pulled from airTableAPI and any changes will be updated here too!
-const defaultDataState = mockUserData;
 
 /*
 mockUserData is an object like below
@@ -47,6 +44,7 @@ const mockUserData = {
   ],
 };
 */
+const defaultDataState = mockUserData;
 
 let today = new Date();
 // today = format(today, "yyyy-MM-dd");
