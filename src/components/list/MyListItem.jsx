@@ -13,7 +13,8 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../../contextStore/data-context";
 import differenceInDays from "date-fns/differenceInDays";
-
+import format from "date-fns/format";
+import parseISO from "date-fns/parseISO";
 const buttonSx = {
   margin: "0 auto",
   display: "flex",
@@ -23,11 +24,7 @@ const buttonSx = {
 };
 
 let today = new Date();
-let dd = String(today.getDate()).padStart(2, "0");
-let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-let yyyy = today.getFullYear();
-
-today = yyyy + "-" + mm + "-" + dd;
+// today = format(today, "yyyy-MM-dd");
 
 const MyListItem = ({ name, descrip }) => {
   const navigate = useNavigate();
@@ -79,12 +76,10 @@ const MyListItem = ({ name, descrip }) => {
   }
 
   const extractedList = extractedCroppedData.map((data) => {
-    const numOfDays = differenceInDays(
-      new Date(data.expiryDate.replace(/-/g, ",")),
-      new Date()
-    );
-    // console.log(numOfDays);
+    const numOfDays = differenceInDays(new Date(data.expiryDate), new Date());
+    console.log(numOfDays);
     let colorOfAvatar = "green";
+
     if (numOfDays < 0) {
       colorOfAvatar = "red";
     }
@@ -172,3 +167,10 @@ const MyListItem = ({ name, descrip }) => {
 };
 
 export default MyListItem;
+
+// let today = new Date();
+// let dd = String(today.getDate()).padStart(2, "0");
+// let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+// let yyyy = today.getFullYear();
+
+// today = yyyy + "-" + mm + "-" + dd;

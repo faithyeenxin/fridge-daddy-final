@@ -6,22 +6,9 @@ import format from "date-fns/format";
 const AddDateForm = ({ name, handleDateChange, categoryItem }) => {
   const shelfCtx = useContext(ShelfContext);
   let today = new Date();
-  let dd = today.getDate();
-  let mm = today.getMonth() + 1; // this is because January is 0!
-  let yyyy = today.getFullYear();
+  const todayStr = format(today, "yyyy-MM-dd");
 
   let helperText;
-  // let [minDate, setMinDate] = useState("");
-
-  if (dd < 10) {
-    dd = "0" + dd;
-  }
-
-  if (mm < 10) {
-    mm = "0" + mm;
-  }
-
-  today = yyyy + "-" + mm + "-" + dd;
   if (name === "Expiration Date" && categoryItem !== "") {
     helperText = `Shelf life is ${shelfCtx.shelfLifeInFocus} day(s), ${format(
       addDays(new Date(), shelfCtx.shelfLifeInFocus),
@@ -49,7 +36,7 @@ const AddDateForm = ({ name, handleDateChange, categoryItem }) => {
         label={name}
         helperText={helperText}
         type="date"
-        defaultValue={today}
+        defaultValue={todayStr}
         InputLabelProps={{
           shrink: true,
         }}
@@ -62,3 +49,20 @@ const AddDateForm = ({ name, handleDateChange, categoryItem }) => {
 };
 
 export default AddDateForm;
+
+// let dd = today.getDate();
+// let mm = today.getMonth() + 1; // this is because January is 0!
+// let yyyy = today.getFullYear();
+
+// let helperText;
+// // let [minDate, setMinDate] = useState("");
+
+// if (dd < 10) {
+//   dd = "0" + dd;
+// }
+
+// if (mm < 10) {
+//   mm = "0" + mm;
+// }
+
+// today = yyyy + "-" + mm + "-" + dd;

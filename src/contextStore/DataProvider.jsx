@@ -3,6 +3,8 @@ import DataContext from "./data-context.js";
 
 import mockUserData from ".././components/testingFolder/mockUserData";
 import differenceInDays from "date-fns/differenceInDays";
+import format from "date-fns/format";
+
 // this defaultDataState will be pulled from airTableAPI and any changes will be updated here too!
 const defaultDataState = mockUserData;
 
@@ -47,11 +49,7 @@ const mockUserData = {
 */
 
 let today = new Date();
-let dd = String(today.getDate()).padStart(2, "0");
-let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-let yyyy = today.getFullYear();
-
-today = yyyy + "-" + mm + "-" + dd;
+// today = format(today, "yyyy-MM-dd");
 
 const dataReducer = (state, action) => {
   let updatedUser;
@@ -108,8 +106,8 @@ const dataReducer = (state, action) => {
       };
     case "REMOVE_FROM_TRASH":
       const numOfDays = differenceInDays(
-        new Date(action.item.expiryDate.replace(/-/g, ",")),
-        new Date(today.replace(/-/g, ","))
+        new Date(action.item.expiryDate),
+        new Date(today)
       );
       if (numOfDays > 0) {
         updatedUser = state.username;

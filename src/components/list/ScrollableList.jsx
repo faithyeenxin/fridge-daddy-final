@@ -7,14 +7,12 @@ import IconButton from "@mui/material/IconButton";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
 import differenceInDays from "date-fns/differenceInDays";
-
+import format from "date-fns/format";
 import DataContext from "../../contextStore/data-context";
 
 let today = new Date();
-let dd = String(today.getDate()).padStart(2, "0");
-let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-let yyyy = today.getFullYear();
-today = yyyy + "-" + mm + "-" + dd;
+// today = format(today, "yyyy-MM-dd");
+
 const ScrollableList = ({ name }) => {
   const dataCtx = useContext(DataContext);
   const removeEvergreenHandler = (data) => {
@@ -50,8 +48,8 @@ const ScrollableList = ({ name }) => {
   };
   const extractedList = dataCtx[name].map((data) => {
     const numOfDays = differenceInDays(
-      new Date(data.expiryDate.replace(/-/g, ",")), //theres a bug here
-      new Date(today.replace(/-/g, ","))
+      new Date(data.expiryDate), //theres a bug here
+      new Date(today)
     );
     let colorOfAvatar = "green";
     if (numOfDays < 0) {

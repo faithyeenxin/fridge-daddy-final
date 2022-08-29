@@ -10,6 +10,7 @@ import React, { useState, useContext } from "react";
 import Image from "/images/green_apple_opacity.png";
 import ShelfContext from "../../contextStore/shelfLife-context";
 import DataContext from "../../contextStore/data-context";
+import format from "date-fns/format";
 
 const buttonSx = {
   backgroundColor: "#f93f23",
@@ -24,22 +25,7 @@ const buttonSx = {
 };
 
 let today = new Date();
-let dd = today.getDate();
-let mm = today.getMonth() + 1; // this is because January is 0!
-let yyyy = today.getFullYear();
-
-let helperText;
-// let [minDate, setMinDate] = useState("");
-
-if (dd < 10) {
-  dd = "0" + dd;
-}
-
-if (mm < 10) {
-  mm = "0" + mm;
-}
-
-today = yyyy + "-" + mm + "-" + dd;
+// today = format(today, "yyyy-MM-dd");
 
 const CategoryForm = () => {
   const shelfCtx = useContext(ShelfContext);
@@ -130,3 +116,20 @@ const CategoryForm = () => {
 };
 
 export default CategoryForm;
+
+// let dd = today.getDate();
+// let mm = today.getMonth() + 1; // this is because January is 0!
+// let yyyy = today.getFullYear();
+
+// let helperText;
+// // let [minDate, setMinDate] = useState("");
+
+// if (dd < 10) {
+//   dd = "0" + dd;
+// }
+
+// if (mm < 10) {
+//   mm = "0" + mm;
+// }
+
+// today = yyyy + "-" + mm + "-" + dd;
