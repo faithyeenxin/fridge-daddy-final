@@ -17,7 +17,7 @@ import ShelfContext from "../../../contextStore/shelfLife-context";
 const AddCategoryForm = ({ handleCategoryChange }) => {
   const shelfCtx = useContext(ShelfContext);
   const navigate = useNavigate();
-  const shelfLifeOptions = shelfCtx.shelfData;
+  const shelfLifeOptions = [{ name: "+ add category" }, ...shelfCtx.shelfData];
   const [searchText, setSearchText] = useState("");
 
   const options =

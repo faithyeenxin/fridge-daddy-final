@@ -37,7 +37,7 @@ const ItemForm = () => {
       purchaseDate: purchaseDateItem,
       expiryDate: expiryDateItem,
     };
-    if (differenceInDays(new Date(expiryDateItem), newDate()) > 0) {
+    if (differenceInDays(new Date(expiryDateItem), new Date()) > 0) {
       dataCtx.addEvergreen(item);
     } else {
       dataCtx.addRotten(item);
