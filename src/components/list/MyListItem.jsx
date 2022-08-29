@@ -77,7 +77,6 @@ const MyListItem = ({ name, descrip }) => {
 
   const extractedList = extractedCroppedData.map((data) => {
     const numOfDays = differenceInDays(new Date(data.expiryDate), new Date());
-    // console.log(numOfDays);
     let colorOfAvatar = "green";
 
     if (numOfDays < 0) {

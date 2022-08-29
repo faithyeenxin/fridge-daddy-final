@@ -116,20 +116,3 @@ const CategoryForm = () => {
 };
 
 export default CategoryForm;
-
-// let dd = today.getDate();
-// let mm = today.getMonth() + 1; // this is because January is 0!
-// let yyyy = today.getFullYear();
-
-// let helperText;
-// // let [minDate, setMinDate] = useState("");
-
-// if (dd < 10) {
-//   dd = "0" + dd;
-// }
-
-// if (mm < 10) {
-//   mm = "0" + mm;
-// }
-
-// today = yyyy + "-" + mm + "-" + dd;

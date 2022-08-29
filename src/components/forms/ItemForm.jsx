@@ -6,7 +6,8 @@ import AddFoodForm from "./itemForm/AddFoodForm";
 import AddQuantityForm from "./itemForm/AddQuantityForm";
 import Image from "/images/full_peach_opacity.jpg";
 import DataContext from "../../contextStore/data-context";
-
+import differenceInDays from "date-fns/differenceInDays";
+let today = new Date();
 const buttonSx = {
   backgroundColor: "#f93f23",
   color: "white",
@@ -28,18 +29,24 @@ const ItemForm = () => {
 
   const dataCtx = useContext(DataContext);
   const addToList = () => {
-    dataCtx.addEvergreen({
+    const newItem = {
       id: `${foodItem}-${categoryItem}-${purchaseDateItem}-${expiryDateItem}-${Math.random()}`,
       item: foodItem,
       quantity: quantityItem,
       category: categoryItem,
       purchaseDate: purchaseDateItem,
       expiryDate: expiryDateItem,
-    });
+    };
+    const numOfDays = differenceInDays(
+      new Date(expiryDateItem),
+      new Date(today)
+    );
+    if (numOfDays > 0) {
+      dataCtx.addEvergreen(newItem);
+    } else {
+      dataCtx.addRotten(newItem);
+    }
   };
-
-  /////- to send function to child
-  /////- addCategoryForm so that they can pass back the info regarding shelf life to expiration date form
 
   const handleFoodChange = (e) => {
     setFood(e.target.value);
