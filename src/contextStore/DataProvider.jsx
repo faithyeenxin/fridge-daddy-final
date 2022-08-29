@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import DataContext from "./data-context.js";
 
 import mockUserData from ".././components/testingFolder/mockUserData";
@@ -153,6 +153,26 @@ const dataReducer = (state, action) => {
           trashed: updatedTrashed,
         };
       }
+    case "CHECK_EVERGREEN":
+      const overdueItems = state.evergreen.filter(
+        (item) => differenceInDays(new Date(item.expiryDate), new Date()) < 0
+      );
+      updatedUser = state.username;
+      updatedPassword = state.password;
+      updatedEvergreen = state.evergreen.filter(
+        (item) => differenceInDays(new Date(item.expiryDate), new Date()) > 0
+      );
+      updatedRotten = state.rotten.concat(overdueItems);
+      updatedTrashed = state.trashed;
+
+      return {
+        username: updatedUser,
+        password: updatedPassword,
+        evergreen: updatedEvergreen,
+        rotten: updatedRotten,
+        trashed: updatedTrashed,
+      };
+      break;
     default:
       return defaultDataState;
       break;
@@ -164,6 +184,10 @@ const DataProvider = (props) => {
     dataReducer,
     defaultDataState
   );
+
+  useEffect(() => {
+    dispatchDataAction({ type: "CHECK_EVERGREEN", item: dataState });
+  }, []);
 
   const addEvergreenHandler = (item) => {
     dispatchDataAction({ type: "ADD_EVERGREEN", item: item });
