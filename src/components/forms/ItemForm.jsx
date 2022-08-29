@@ -102,7 +102,6 @@ const ItemForm = () => {
             name="Expiration Date"
             handleDateChange={handleExpiryDateChange}
             categoryItem={categoryItem}
-            expiryDate={expiryDateItem}
           />
         </Grid>
         <Button variant="primary" sx={buttonSx} onClick={addToList}>
