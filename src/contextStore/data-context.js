@@ -6,12 +6,17 @@ const DataContext = React.createContext({
   evergreen: [],
   rotten: [],
   trashed: [],
-  checkEvergreen: () => {},
-  moveToTrash: () => {},
   addEvergreen: () => {},
-  transferEvergreenToRotten: () => {},
-  transferEvergreenToTrashed: () => {},
+  addRotten: () => {},
+  removeEvergreen: () => {},
+  removeRotten: () => {},
   removeFromTrash: () => {},
 });
 
 export default DataContext;
+
+// addEvergreen: addEvergreenHandler,
+//     addRotten: addRottenHandler,
+//     removeEvergreen: removeEvergreenHandler,
+//     removeRotten: removeRottenHandler,
+//     removeFromTrash: removeFromTrashHandler,

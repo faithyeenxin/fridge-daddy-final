@@ -6,6 +6,7 @@ import AddFoodForm from "./itemForm/AddFoodForm";
 import AddQuantityForm from "./itemForm/AddQuantityForm";
 import Image from "/images/full_peach_opacity.jpg";
 import DataContext from "../../contextStore/data-context";
+import differenceInDays from "date-fns/differenceInDays";
 
 const buttonSx = {
   backgroundColor: "#f93f23",
@@ -28,14 +29,19 @@ const ItemForm = () => {
 
   const dataCtx = useContext(DataContext);
   const addToList = () => {
-    dataCtx.addEvergreen({
+    const item = {
       id: `${foodItem}-${categoryItem}-${purchaseDateItem}-${expiryDateItem}-${Math.random()}`,
       item: foodItem,
       quantity: quantityItem,
       category: categoryItem,
       purchaseDate: purchaseDateItem,
       expiryDate: expiryDateItem,
-    });
+    };
+    if (differenceInDays(new Date(expiryDateItem), newDate()) > 0) {
+      dataCtx.addEvergreen(item);
+    } else {
+      dataCtx.addRotten(item);
+    }
   };
 
   /////- to send function to child

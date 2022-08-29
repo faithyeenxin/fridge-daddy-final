@@ -71,6 +71,21 @@ const dataReducer = (state, action) => {
         trashed: updatedTrashed,
       };
       break;
+    case "ADD_ROTTEN":
+      updatedUser = state.username;
+      updatedPassword = state.password;
+      updatedEvergreen = state.evergreen;
+      updatedRotten = state.rotten.concat(action.item);
+      updatedTrashed = state.trashed;
+
+      return {
+        username: updatedUser,
+        password: updatedPassword,
+        evergreen: updatedEvergreen,
+        rotten: updatedRotten,
+        trashed: updatedTrashed,
+      };
+      break;
     case "REMOVE_EVERGREEN":
       updatedUser = state.username;
       updatedPassword = state.password;
@@ -154,6 +169,9 @@ const DataProvider = (props) => {
     dispatchDataAction({ type: "ADD_EVERGREEN", item: item });
   };
 
+  const addRottenHandler = (item) => {
+    dispatchDataAction({ type: "ADD_ROTTEN", item: item });
+  };
   const removeEvergreenHandler = (item) => {
     dispatchDataAction({ type: "REMOVE_EVERGREEN", item: item });
   };
@@ -175,6 +193,7 @@ const DataProvider = (props) => {
     rotten: dataState.rotten,
     trashed: dataState.trashed,
     addEvergreen: addEvergreenHandler,
+    addRotten: addRottenHandler,
     removeEvergreen: removeEvergreenHandler,
     removeRotten: removeRottenHandler,
     removeFromTrash: removeFromTrashHandler,

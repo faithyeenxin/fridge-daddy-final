@@ -26,6 +26,7 @@ const shelfLifeReducer = (state, action) => {
       newShelfLifeInFocus = state.shelfLifeInFocus;
       console.log("new shelf life list");
       console.log(newShelfList);
+      createRecord(action.item);
       return {
         shelfData: newShelfList,
         shelfLifeInFocus: newShelfLifeInFocus,
@@ -83,6 +84,24 @@ const getRecords = async () => {
   return filteredRecords;
 };
 
+const createRecord = async (record) => {
+  const item = {
+    name: record.name,
+    shelflife: record.shelflife,
+    dateAdded: record.dateAdded,
+    contributor: record.contributor,
+    imgUrl: record.imgUrl,
+  };
+  const records = await shelfLifeTable
+    .select({ filterByFormula: `SEARCH("${item.name}",{name})` })
+    .all();
+  if (records.length === 0) {
+    const createdRecord = await shelfLifeTable.create(item);
+    console.log(createdRecord);
+  } else {
+    console.log(`record cannot be created as item (${item.name}) exists`);
+  }
+};
 const ShelfLifeProvider = (props) => {
   const [status, setStatus] = useState("idle");
   useEffect(() => {

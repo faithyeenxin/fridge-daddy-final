@@ -27,6 +27,9 @@ const buttonSx = {
 let today = new Date();
 // today = format(today, "yyyy-MM-dd");
 
+// https://api.spoonacular.com/food/ingredients/search?query=fruit&apiKey=5962ec749418426c81fa226be6317343
+const apiKey = "5962ec749418426c81fa226be6317343";
+
 const CategoryForm = () => {
   const shelfCtx = useContext(ShelfContext);
   const dataCtx = useContext(DataContext);
@@ -35,15 +38,21 @@ const CategoryForm = () => {
   const [shelfLifeInput, setShelfLifeInput] = useState("");
 
   const handleSubmit = () => {
-    console.log(categoryInput, shelfLifeInput);
-    shelfCtx.addShelfData({
-      id: Math.random(), //to change this to it's respective id found when calling API
-      name: categoryInput,
-      shelflife: shelfLifeInput,
-      dateAdded: format(today, "yyyy-MM-dd"),
-      contributor: dataCtx.username,
-      imgUrl: "image will be found using API call to spoonacular",
-    });
+    fetch(
+      `https://api.spoonacular.com/food/ingredients/search?query=${categoryInput}&apiKey=5962ec749418426c81fa226be6317343`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        const imgTitle = data.results[0].image;
+        shelfCtx.addShelfData({
+          id: Math.random(),
+          name: categoryInput,
+          shelflife: shelfLifeInput,
+          dateAdded: format(today, "yyyy-MM-dd"),
+          contributor: dataCtx.username,
+          imgUrl: `https://spoonacular.com/cdn/ingredients_250x250/${imgTitle}`,
+        });
+      });
   };
 
   return (
@@ -116,20 +125,3 @@ const CategoryForm = () => {
 };
 
 export default CategoryForm;
-
-// let dd = today.getDate();
-// let mm = today.getMonth() + 1; // this is because January is 0!
-// let yyyy = today.getFullYear();
-
-// let helperText;
-// // let [minDate, setMinDate] = useState("");
-
-// if (dd < 10) {
-//   dd = "0" + dd;
-// }
-
-// if (mm < 10) {
-//   mm = "0" + mm;
-// }
-
-// today = yyyy + "-" + mm + "-" + dd;
