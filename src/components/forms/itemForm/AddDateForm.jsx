@@ -3,7 +3,7 @@ import { Grid, TextField } from "@mui/material";
 import ShelfContext from "../../../contextStore/shelfLife-context";
 import addDays from "date-fns/addDays";
 import format from "date-fns/format";
-const AddDateForm = ({ name, handleDateChange, categoryItem }) => {
+const AddDateForm = ({ name, expiryDate, handleDateChange, categoryItem }) => {
   const shelfCtx = useContext(ShelfContext);
   let today = new Date();
   const todayStr = format(today, "yyyy-MM-dd");
@@ -17,6 +17,7 @@ const AddDateForm = ({ name, handleDateChange, categoryItem }) => {
   } else {
     helperText = " ";
   }
+  console.log(shelfCtx.shelfLifeInFocus);
 
   return (
     <Grid

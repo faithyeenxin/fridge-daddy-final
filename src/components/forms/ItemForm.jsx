@@ -48,11 +48,11 @@ const ItemForm = () => {
   /////- addCategoryForm so that they can pass back the info regarding shelf life to expiration date form
 
   const handleFoodChange = (e) => {
-    setFood(e.target.value);
+    setFood(e.target.value.toLowerCase());
   };
 
   const handleQuantityChange = (e) => {
-    setQuantity(e.target.value);
+    setQuantity(e.target.value.toLowerCase());
   };
 
   const handleCategoryChange = (e) => {
@@ -102,6 +102,7 @@ const ItemForm = () => {
             name="Expiration Date"
             handleDateChange={handleExpiryDateChange}
             categoryItem={categoryItem}
+            expiryDate={expiryDateItem}
           />
         </Grid>
         <Button variant="primary" sx={buttonSx} onClick={addToList}>

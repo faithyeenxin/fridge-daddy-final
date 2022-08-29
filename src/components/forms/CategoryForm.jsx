@@ -91,7 +91,7 @@ const CategoryForm = () => {
               variant="filled"
               label="category name"
               size="small"
-              onChange={(e) => setCategoryInput(e.target.value)}
+              onChange={(e) => setCategoryInput(e.target.value.toLowerCase())}
               helperText=" "
             />
           </Grid>
