@@ -40,7 +40,7 @@ const CategoryForm = () => {
       id: Math.random(), //to change this to it's respective id found when calling API
       name: categoryInput,
       shelflife: shelfLifeInput,
-      dateAdded: today,
+      dateAdded: format(today, "yyyy-MM-dd"),
       contributor: dataCtx.username,
       imgUrl: "image will be found using API call to spoonacular",
     });
