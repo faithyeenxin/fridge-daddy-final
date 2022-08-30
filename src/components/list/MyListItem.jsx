@@ -80,7 +80,7 @@ const MyListItem = ({ name, descrip }) => {
     // console.log(numOfDays);
     let colorOfAvatar = "green";
 
-    if (numOfDays < 0) {
+    if (numOfDays < 1) {
       colorOfAvatar = "red";
     }
     return (
@@ -111,9 +111,7 @@ const MyListItem = ({ name, descrip }) => {
         }
       >
         <ListItemAvatar>
-          <Avatar sx={{ backgroundColor: colorOfAvatar }}>
-            {numOfDays + 1}
-          </Avatar>
+          <Avatar sx={{ backgroundColor: colorOfAvatar }}>{numOfDays}</Avatar>
         </ListItemAvatar>
         <ListItemText
           primary={data.item}
