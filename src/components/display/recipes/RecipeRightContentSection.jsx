@@ -2,16 +2,9 @@ import { Card, Grid, Typography } from "@mui/material";
 import React from "react";
 import RecipeList from "../../list/RecipeList";
 
-const RecipeRightContentSection = () => {
+const RecipeRightContentSection = ({ addToList, removeFromList }) => {
   return (
-    <Grid
-      item
-      s={12}
-      md={4}
-      sx={{
-        margin: "2%",
-      }}
-    >
+    <Grid item s={12} md={4}>
       <Card sx={{ width: "100%", height: "100%" }}>
         <Typography
           variant="h5"
@@ -19,12 +12,12 @@ const RecipeRightContentSection = () => {
             textAlign: "center",
             fontStyle: "italic",
             padding: "5%",
-            color: "#c9caa2",
+            color: "#3b5f4b",
           }}
         >
           select from your fridge!
         </Typography>
-        <RecipeList name="evergreen" />
+        <RecipeList addToList={addToList} removeFromList={removeFromList} />
       </Card>
     </Grid>
   );

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { List, ListItem, Paper } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -6,34 +6,76 @@ import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import ListItemText from "@mui/material/ListItemText";
 import DataContext from "../../contextStore/data-context";
 
-const RecipeList = ({ name }) => {
+// {
+//   id: "214564658425",
+//   item: "fish",
+//   quantity: " 3 fillet",
+//   category: "fish",
+//   purchaseDate: "2022-08-26",
+//   expiryDate: "2022-09-05",
+// }
+
+const RecipeList = ({ addToList, removeFromList }) => {
   const dataCtx = useContext(DataContext);
-  const extractedList = dataCtx[name].map((data) => {
+  const minifiedEvergreenData = dataCtx.evergreen.map((item) => {
+    return {
+      name: item.item,
+      quantity: item.quantity,
+      itemAdded: false,
+    };
+  });
+  const [evergreenList, setEvergreenList] = useState(minifiedEvergreenData);
+
+  const extractedList = evergreenList.map((data) => {
     return (
       <ListItem
-        key={`${data.item}-${data.category}-${Math.random()}`}
+        key={`${data.name}-${Math.random()}`}
         secondaryAction={
-          name !== "trashed" ? (
+          data.itemAdded === true ? (
             <IconButton
               edge="end"
               aria-label="delete"
-              onClick={() => console.log("add button was clicked")}
+              onClick={() => {
+                const newEvergreenList = evergreenList.map((item) => {
+                  return item.name === data.name
+                    ? {
+                        name: item.name,
+                        quantity: item.quantity,
+                        itemAdded: false,
+                      }
+                    : item;
+                });
+                setEvergreenList(newEvergreenList);
+                removeFromList(data);
+              }}
             >
-              <AddCircleOutlineIcon />
+              <RemoveCircleOutlineIcon />
             </IconButton>
           ) : (
             <IconButton
               edge="end"
               aria-label="delete"
-              onClick={() => console.log("remove button was clicked")} //to add removeTrashHandler here
+              onClick={() => {
+                const newEvergreenList = evergreenList.map((item) => {
+                  return item.name === data.name
+                    ? {
+                        name: item.name,
+                        quantity: item.quantity,
+                        itemAdded: true,
+                      }
+                    : item;
+                });
+                setEvergreenList(newEvergreenList);
+                addToList(data);
+              }} //to add removeTrashHandler here
             >
-              <RemoveCircleOutlineIcon />
+              <AddCircleOutlineIcon />
             </IconButton>
           )
         }
       >
         <ListItemText
-          primary={data.item}
+          primary={data.name}
           secondary={`quantity: ${data.quantity}`}
         />
       </ListItem>
@@ -43,9 +85,9 @@ const RecipeList = ({ name }) => {
   return (
     <Paper
       style={{
-        minWidth: 350,
-        minHeight: 500,
-        maxHeight: 500,
+        width: "100%",
+        minHeight: 900,
+        // maxHeight: 900,
         overflow: "auto",
       }}
     >
@@ -54,9 +96,10 @@ const RecipeList = ({ name }) => {
         variant="outlined"
         sx={{
           borderRadius: "sm",
-          minWidth: 300,
-          minHeight: 500,
-          maxHeight: 500,
+          width: "80%",
+          minHeight: 900,
+          // maxHeight: 900,
+          margin: 2,
           padding: 2,
         }}
       >

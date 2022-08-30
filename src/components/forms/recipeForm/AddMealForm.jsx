@@ -11,9 +11,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShelfContext from "../../../contextStore/shelfLife-context";
 import DataContext from "../../../contextStore/data-context";
 
-const AddMealForm = () => {
-  const [mealInput, setMealInput] = useState("");
-
+const AddMealForm = ({ getMeal }) => {
   const mealType = [
     "main course",
     "side dish",
@@ -31,13 +29,12 @@ const AddMealForm = () => {
     "drink",
   ];
 
-  const mealOptions = mealType;
   const [searchText, setSearchText] = useState("");
 
   const options =
     searchText === ""
-      ? mealOptions
-      : mealOptions.filter((option) => {
+      ? mealType
+      : mealType.filter((option) => {
           return option.includes(searchText);
         });
   return (
@@ -53,7 +50,7 @@ const AddMealForm = () => {
         margin="normal"
         onChange={(e) => {
           setSearchText("");
-          setMealInput(e.target.value);
+          getMeal(e.target.value);
         }}
         onClose={() => {
           setSearchText("");

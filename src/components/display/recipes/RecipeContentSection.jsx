@@ -1,19 +1,19 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Container,
-  Grid,
-  Paper,
-  Typography,
-} from "@mui/material";
-import React from "react";
-import RecipeForm from "../../forms/RecipeForm";
-import RecipeList from "../../list/RecipeList";
+import { Container, Grid } from "@mui/material";
+import React, { useState } from "react";
 import RecipeLeftContentSection from "./RecipeLeftContentSection";
 import RecipeRightContentSection from "./RecipeRightContentSection";
 
 const RecipeContentSection = () => {
+  const [recipeList, setRecipeList] = useState([]);
+
+  const addToList = (listItem) => {
+    setRecipeList([...recipeList, listItem.name]);
+  };
+  const removeFromList = (listItem) => {
+    const newRecipeList = recipeList.filter((item) => item !== listItem.name);
+    setRecipeList(newRecipeList);
+  };
+
   return (
     <Container
       maxWidth="100vw"
@@ -23,8 +23,11 @@ const RecipeContentSection = () => {
       }}
     >
       <Grid container justifyContent="center" spacing={4}>
-        <RecipeLeftContentSection />
-        <RecipeRightContentSection />
+        <RecipeLeftContentSection recipeList={recipeList} />
+        <RecipeRightContentSection
+          addToList={addToList}
+          removeFromList={removeFromList}
+        />
       </Grid>
     </Container>
   );

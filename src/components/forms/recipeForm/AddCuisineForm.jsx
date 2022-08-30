@@ -9,7 +9,7 @@ import {
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 
-const AddCuisineForm = () => {
+const AddCuisineForm = ({ getCuisine }) => {
   const cuisines = [
     "african",
     "american",
@@ -38,15 +38,13 @@ const AddCuisineForm = () => {
     "thai",
     "vietnamese",
   ];
-  const [cuisinInput, setCuisineInput] = useState("");
 
-  const cuisinOptions = cuisines;
   const [searchText, setSearchText] = useState("");
 
   const options =
     searchText === ""
-      ? cuisinOptions
-      : cuisinOptions.filter((option) => {
+      ? cuisines
+      : cuisines.filter((option) => {
           return option.includes(searchText);
         });
   return (
@@ -62,7 +60,7 @@ const AddCuisineForm = () => {
         margin="normal"
         onChange={(e) => {
           setSearchText("");
-          setCuisineInput(e.target.value);
+          getCuisine(e.target.value);
         }}
         onClose={() => {
           setSearchText("");

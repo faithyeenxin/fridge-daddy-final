@@ -1,9 +1,5 @@
 import { Button, Container, Grid } from "@mui/material";
-
-import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import ShelfContext from "../../contextStore/shelfLife-context";
-import DataContext from "../../contextStore/data-context";
+import React, { useState } from "react";
 import AddCuisineForm from "./recipeForm/AddCuisineForm";
 import AddMealForm from "./recipeForm/AddMealForm";
 
@@ -19,13 +15,7 @@ const buttonSx = {
   padding: "0.5rem 1.5rem",
 };
 
-let today = new Date();
-// today = format(today, "yyyy-MM-dd");
-
-// https://api.spoonacular.com/food/ingredients/search?query=fruit&apiKey=5962ec749418426c81fa226be6317343
-const apiKey = "5962ec749418426c81fa226be6317343";
-
-const RecipeForm = () => {
+const RecipeForm = ({ getMeal, getCuisine, handleRecipeFormSubmit }) => {
   return (
     <Container>
       <Grid container sx={{ padding: "0% 10%" }}>
@@ -40,7 +30,7 @@ const RecipeForm = () => {
             alignItems: "center",
           }}
         >
-          <AddCuisineForm />
+          <AddCuisineForm getCuisine={getCuisine} />
         </Grid>
         <Grid
           item
@@ -53,7 +43,7 @@ const RecipeForm = () => {
             alignItems: "center",
           }}
         >
-          <AddMealForm />
+          <AddMealForm getMeal={getMeal} />
         </Grid>
         <Grid
           item
@@ -70,9 +60,7 @@ const RecipeForm = () => {
           <Button
             variant="primary"
             sx={buttonSx}
-            onClick={() => {
-              console.log("submit button was clicked");
-            }}
+            onClick={handleRecipeFormSubmit}
           >
             Submit
           </Button>
