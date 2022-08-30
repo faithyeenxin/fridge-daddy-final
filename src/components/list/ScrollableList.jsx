@@ -121,22 +121,3 @@ const ScrollableList = ({ name }) => {
 };
 
 export default ScrollableList;
-
-// <ListItem
-//   key={`${data.item}-${data.purchaseDate}`}
-//   secondaryAction={
-//     <IconButton edge="end" aria-label="delete">
-//       {name !== "trashed" ? <DeleteIcon /> : <RestoreFromTrashIcon />}
-//     </IconButton>
-//   }
-// >
-//   <ListItemAvatar>
-//     <Avatar>
-//       <FolderIcon />
-//     </Avatar>
-//   </ListItemAvatar>
-//   <ListItemText
-//     primary={data.item}
-//     secondary={`Category: ${data.category}`}
-//   />
-// </ListItem>

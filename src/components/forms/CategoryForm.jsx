@@ -13,7 +13,7 @@ import DataContext from "../../contextStore/data-context";
 import format from "date-fns/format";
 
 const buttonSx = {
-  backgroundColor: "#f93f23",
+  backgroundColor: "#c9caa2",
   color: "white",
   margin: "3% auto",
   display: "flex",
@@ -71,6 +71,7 @@ const CategoryForm = () => {
           variant="h3"
           align="center"
           sx={{ color: "white", margin: "5%" }}
+          autoComplete="off"
           gutterBottom
         >
           Add a Category
@@ -113,6 +114,7 @@ const CategoryForm = () => {
               type="number"
               onChange={(e) => setShelfLifeInput(e.target.value)}
               helperText="please only input integers!"
+              autoComplete="off"
             />
           </Grid>
         </Grid>

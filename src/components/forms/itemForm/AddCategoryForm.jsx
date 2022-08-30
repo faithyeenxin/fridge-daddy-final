@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import {
   FormControl,
   InputAdornment,
@@ -42,6 +42,7 @@ const AddCategoryForm = ({ handleCategoryChange }) => {
         {/* this does the input */}
         <TextField
           required
+          autoComplete="off"
           variant="filled"
           label="category"
           select
@@ -65,6 +66,7 @@ const AddCategoryForm = ({ handleCategoryChange }) => {
               // Autofocus on textfield
               autoFocus
               placeholder="Type to search..."
+              autoComplete="off"
               fullWidth
               InputProps={{
                 startAdornment: (

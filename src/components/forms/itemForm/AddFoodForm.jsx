@@ -14,6 +14,7 @@ const AddFoodForm = ({ handleFoodChange }) => {
     >
       <TextField
         required
+        type="text"
         autoComplete="off"
         variant="filled"
         label="food/ingredient"

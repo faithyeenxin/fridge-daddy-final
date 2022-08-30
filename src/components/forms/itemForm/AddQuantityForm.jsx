@@ -17,6 +17,7 @@ const AddQuantityForm = ({ handleQuantityChange }) => {
         variant="filled"
         label="quantity"
         size="small"
+        type="number"
         helperText=" "
         // onChange={handleQuantityChange}
         onChange={(e) => handleQuantityChange(e)}
