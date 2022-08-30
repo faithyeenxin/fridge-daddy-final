@@ -23,7 +23,7 @@ const buttonSx = {
 const RecipeCard = ({ item }) => {
   return (
     <Grid item s={12} md={4} lg={4}>
-      <Card sx={{ fontsize: 18, height: 350 }}>
+      <Card sx={{ fontsize: 18, height: "100%" }}>
         <CardMedia
           component="img"
           //   height="194"
