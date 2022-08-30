@@ -28,7 +28,7 @@ const CategoryCard = ({ name, shelflife, imgUrl }) => {
         margin: "2%",
       }}
     >
-      <Card sx={{ display: "flex", maxWidth: 250, minWidth: 250, height: 150 }}>
+      <Card sx={{ display: "flex", maxWidth: 300, minWidth: 300, height: 150 }}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           {/* sx={{ flex: "1 0 auto" }} */}
           <CardContent sx={{ width: "80%", height: "100%" }}>
