@@ -1,14 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
 import RecipeForm from "../../forms/RecipeForm";
 import RecipeCard from "./RecipeCard";
+import RandomRecipeCard from "./RandomRecipeCard";
 
 const RecipeLeftContentSection = ({ recipeList }) => {
   const [mealInput, setMealInput] = useState("");
   const [cuisineInput, setCuisineInput] = useState("");
   const [recipeQuery, setRecipeQuery] = useState([]);
+  const [randomRecipe, setRandomRecipe] = useState([]);
   let recipes;
   const recipeStr = recipeList.join(", ");
+
+  const numberOfRecipes = 16;
+  const apiKey = `5962ec749418426c81fa226be6317343`;
+
+  const randomRecipeUrl = `https://api.spoonacular.com/recipes/random?number=6&apiKey=${apiKey}`;
+
+  useEffect(() => {
+    fetch(randomRecipeUrl)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.recipes);
+        setRandomRecipe(data.recipes);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const getCuisine = (cuisine) => {
     setCuisineInput(cuisine);
@@ -19,21 +36,20 @@ const RecipeLeftContentSection = ({ recipeList }) => {
   };
 
   const handleRecipeFormSubmit = () => {
-    const numberOfRecipes = 16;
     const ingredients = recipeList.join(",");
     const cuisine = cuisineInput;
     const meal = mealInput;
-    const apiKey = `5962ec749418426c81fa226be6317343`;
 
-    const url = `https://api.spoonacular.com/recipes/complexSearch?number=${numberOfRecipes}&sort=min-missing-ingredients&sortDirection=asc&instructionsRequired=true&ignorePantry=true&includeIngredients=${ingredients}&cuisine=${cuisine}&type=${meal}&apiKey=${apiKey}`;
+    const queryUrl = `https://api.spoonacular.com/recipes/complexSearch?number=${numberOfRecipes}&sort=min-missing-ingredients&sortDirection=asc&instructionsRequired=true&ignorePantry=true&includeIngredients=${ingredients}&cuisine=${cuisine}&type=${meal}&apiKey=${apiKey}`;
     /// fetching of data
-    console.log(url);
-    fetch(url)
+    console.log(queryUrl);
+    fetch(queryUrl)
       .then((res) => res.json())
       .then((data) => {
         console.log(data.results);
         setRecipeQuery(data.results);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   if (recipeQuery.length < 6) {
@@ -104,9 +120,13 @@ const RecipeLeftContentSection = ({ recipeList }) => {
 
         <CardContent>
           <Grid container spacing={2}>
-            {recipes.map((item) => (
-              <RecipeCard key={Math.random()} item={item} />
-            ))}
+            {recipeQuery.length === 0
+              ? randomRecipe.map((item) => (
+                  <RandomRecipeCard key={Math.random()} item={item} />
+                ))
+              : recipes.map((item) => (
+                  <RecipeCard key={Math.random()} item={item} />
+                ))}
           </Grid>
         </CardContent>
       </Card>

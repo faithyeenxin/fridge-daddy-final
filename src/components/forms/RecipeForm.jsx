@@ -62,7 +62,7 @@ const RecipeForm = ({ getMeal, getCuisine, handleRecipeFormSubmit }) => {
             sx={buttonSx}
             onClick={handleRecipeFormSubmit}
           >
-            Submit
+            Search
           </Button>
         </Grid>
       </Grid>
