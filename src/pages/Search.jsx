@@ -5,7 +5,7 @@ const Search = () => {
   return (
     <>
       <SearchForm />
-      <SearchContentSection />
+      {/* <SearchContentSection /> */}
     </>
   );
 };

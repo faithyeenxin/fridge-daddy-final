@@ -55,7 +55,7 @@ const RecipeLeftContentSection = ({ recipeList }) => {
   if (recipeQuery.length < 6) {
     recipes = recipeQuery;
   } else {
-    recipes = recipeQuery.slice(0, 5);
+    recipes = recipeQuery.slice(0, 6);
   }
 
   return (

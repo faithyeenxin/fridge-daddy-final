@@ -5,10 +5,9 @@ import ShelfContext from "../../../contextStore/shelfLife-context";
 const CategoryCardDeck = () => {
   const shelfCtx = useContext(ShelfContext);
   const shelfDataLength = shelfCtx.shelfData.length;
-  const shelfData = shelfCtx.shelfData.slice(
-    shelfDataLength - 4,
-    shelfDataLength
-  );
+  const shelfData = shelfCtx.shelfData
+    .slice(shelfDataLength - 4, shelfDataLength)
+    .reverse();
 
   const fourCategoryCards = shelfData.map((item, index) => {
     return (

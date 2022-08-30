@@ -49,7 +49,7 @@ const RecipeList = ({ addToList, removeFromList }) => {
                 removeFromList(data);
               }}
             >
-              <RemoveCircleOutlineIcon />
+              <RemoveCircleOutlineIcon sx={{ color: "red" }} />
             </IconButton>
           ) : (
             <IconButton
@@ -69,7 +69,7 @@ const RecipeList = ({ addToList, removeFromList }) => {
                 addToList(data);
               }} //to add removeTrashHandler here
             >
-              <AddCircleOutlineIcon />
+              <AddCircleOutlineIcon sx={{ color: "green" }} />
             </IconButton>
           )
         }
