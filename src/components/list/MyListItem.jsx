@@ -122,7 +122,7 @@ const MyListItem = ({ name, descrip }) => {
   });
 
   return (
-    <Grid item s={4} sx={{ margin: "2%" }}>
+    <Grid item s={4} sx={{ margin: "1%" }}>
       <Card>
         <CardHeader
           title={name}

@@ -8,7 +8,7 @@ const HomesList = () => {
     <Container
       maxWidth="100vw"
       sx={{
-        marginTop: "5%",
+        marginTop: "2%",
       }}
     >
       <Grid container justifyContent="center">
