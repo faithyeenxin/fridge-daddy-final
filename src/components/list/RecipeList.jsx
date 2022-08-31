@@ -67,7 +67,7 @@ const RecipeList = ({ addToList, removeFromList }) => {
                 });
                 setEvergreenList(newEvergreenList);
                 addToList(data);
-              }} //to add removeTrashHandler here
+              }}
             >
               <AddCircleOutlineIcon sx={{ color: "green" }} />
             </IconButton>
@@ -86,8 +86,8 @@ const RecipeList = ({ addToList, removeFromList }) => {
     <Paper
       style={{
         width: "100%",
-        minHeight: 900,
-        // maxHeight: 900,
+        minHeight: 800,
+        maxHeight: 800,
         overflow: "auto",
       }}
     >
@@ -97,7 +97,7 @@ const RecipeList = ({ addToList, removeFromList }) => {
         sx={{
           borderRadius: "sm",
           width: "80%",
-          minHeight: 900,
+          minHeight: 800,
           // maxHeight: 900,
           margin: 2,
           padding: 2,

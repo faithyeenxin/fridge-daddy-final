@@ -5,7 +5,7 @@ import RecipeList from "../../list/RecipeList";
 const RecipeRightContentSection = ({ addToList, removeFromList }) => {
   return (
     <Grid item s={12} md={4}>
-      <Card sx={{ width: "100%", height: "100%" }}>
+      <Card>
         <Typography
           variant="h5"
           sx={{

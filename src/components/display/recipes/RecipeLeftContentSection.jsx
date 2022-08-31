@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CircularProgress,
+  Grid,
+  LinearProgress,
+  Typography,
+} from "@mui/material";
 import RecipeForm from "../../forms/RecipeForm";
 import RecipeCard from "./RecipeCard";
 import RandomRecipeCard from "./RandomRecipeCard";
@@ -9,12 +17,16 @@ const RecipeLeftContentSection = ({ recipeList }) => {
   const [cuisineInput, setCuisineInput] = useState("");
   const [recipeQuery, setRecipeQuery] = useState([]);
   const [randomRecipe, setRandomRecipe] = useState([]);
+  const [status, setStatus] = useState("showRandom");
   let recipes;
   const recipeStr = recipeList.join(", ");
 
+  //////////////////////////////////////////////////////
+  //// * Random Recipe
+  //////////////////////////////////////////////////////
+
   const numberOfRecipes = 16;
   const apiKey = `5962ec749418426c81fa226be6317343`;
-
   const randomRecipeUrl = `https://api.spoonacular.com/recipes/random?number=6&apiKey=${apiKey}`;
 
   useEffect(() => {
@@ -24,8 +36,14 @@ const RecipeLeftContentSection = ({ recipeList }) => {
         console.log(data.recipes);
         setRandomRecipe(data.recipes);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
+
+  //////////////////////////////////////////////////////
+  //// * Searched Recipe
+  //////////////////////////////////////////////////////
 
   const getCuisine = (cuisine) => {
     setCuisineInput(cuisine);
@@ -42,20 +60,67 @@ const RecipeLeftContentSection = ({ recipeList }) => {
 
     const queryUrl = `https://api.spoonacular.com/recipes/complexSearch?number=${numberOfRecipes}&sort=min-missing-ingredients&sortDirection=asc&instructionsRequired=true&ignorePantry=true&includeIngredients=${ingredients}&cuisine=${cuisine}&type=${meal}&apiKey=${apiKey}`;
     /// fetching of data
-    console.log(queryUrl);
+    setStatus("pending");
     fetch(queryUrl)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.results);
         setRecipeQuery(data.results);
+        console.log(data.results);
+        if (data.results.length > 0) {
+          setStatus("resolved");
+        } else {
+          setStatus("no recipe found");
+        }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setStatus("error");
+      });
   };
 
   if (recipeQuery.length < 6) {
     recipes = recipeQuery;
   } else {
     recipes = recipeQuery.slice(0, 6);
+  }
+
+  let recipeDisplay;
+  if (status === "showRandom") {
+    recipeDisplay = (
+      <CardContent>
+        <Grid container spacing={2}>
+          {randomRecipe.map((item) => (
+            <RandomRecipeCard key={Math.random()} item={item} />
+          ))}
+        </Grid>
+      </CardContent>
+    );
+  } else if (status === "pending") {
+    recipeDisplay = (
+      <>
+        <Typography variant="h6" textAlign="center" sx={{ margin: "10%" }}>
+          Searching...
+        </Typography>
+        <LinearProgress color="inherit" />
+        <br />
+      </>
+    );
+  } else if (status === "resolved") {
+    recipeDisplay = (
+      <CardContent>
+        <Grid container spacing={2}>
+          {recipes.map((item) => (
+            <RecipeCard key={Math.random()} item={item} />
+          ))}
+        </Grid>
+      </CardContent>
+    );
+  } else if (status === "no recipe found") {
+    recipeDisplay = (
+      <Typography variant="h6" textAlign="center" sx={{ margin: "10%" }}>
+        No Recipes Found
+      </Typography>
+    );
   }
 
   return (
@@ -117,18 +182,7 @@ const RecipeLeftContentSection = ({ recipeList }) => {
             </Typography>
           }
         />
-
-        <CardContent>
-          <Grid container spacing={2}>
-            {recipeQuery.length === 0
-              ? randomRecipe.map((item) => (
-                  <RandomRecipeCard key={Math.random()} item={item} />
-                ))
-              : recipes.map((item) => (
-                  <RecipeCard key={Math.random()} item={item} />
-                ))}
-          </Grid>
-        </CardContent>
+        {recipeDisplay}
       </Card>
     </Grid>
   );

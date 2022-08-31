@@ -11,6 +11,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 const AddCuisineForm = ({ getCuisine }) => {
   const cuisines = [
+    "-",
     "african",
     "american",
     "british",

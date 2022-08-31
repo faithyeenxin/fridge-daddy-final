@@ -13,6 +13,7 @@ import DataContext from "../../../contextStore/data-context";
 
 const AddMealForm = ({ getMeal }) => {
   const mealType = [
+    "-",
     "main course",
     "side dish",
     "dessert",
