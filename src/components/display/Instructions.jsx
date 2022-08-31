@@ -2,9 +2,9 @@ import React from "react";
 import { Typography, Grid, Container } from "@mui/material";
 import Gif from "/images/leader_board.gif";
 
-const TopInstruct = () => {
+const KeepTabs = () => {
   return (
-    <>
+    <Grid container sx={{ padding: "5%" }} spacing={10} direction="row">
       <Grid
         item
         xs={12}
@@ -49,13 +49,13 @@ const TopInstruct = () => {
           style={{ width: "85%", textAlign: "center", borderRadius: "2%" }}
         />
       </Grid>
-    </>
+    </Grid>
   );
 };
 
-const BottomInstruct = () => {
+const CurateRecipe = () => {
   return (
-    <>
+    <Grid container sx={{ padding: "5%" }} spacing={10} direction="row-reverse">
       <Grid
         item
         xs={12}
@@ -101,7 +101,7 @@ const BottomInstruct = () => {
           style={{ width: "85%", textAlign: "center", borderRadius: "2%" }}
         />
       </Grid>
-    </>
+    </Grid>
   );
 };
 
@@ -112,18 +112,8 @@ const Instructions = () => {
         padding: "10vh 5vh",
       }}
     >
-      <Grid container sx={{ padding: "5%" }} spacing={10} direction="row">
-        <TopInstruct />
-      </Grid>
-      <Grid
-        container
-        sx={{ padding: "5%" }}
-        spacing={10}
-        direction="row-reverse"
-      >
-        <BottomInstruct />
-      </Grid>
-      <br />
+      <KeepTabs />
+      <CurateRecipe />
     </div>
   );
 };
