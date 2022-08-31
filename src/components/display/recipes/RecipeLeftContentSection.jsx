@@ -59,7 +59,7 @@ const RecipeLeftContentSection = ({ recipeList }) => {
     const cuisine = cuisineInput;
     const meal = mealInput;
 
-    const queryUrl = `https://api.spoonacular.com/recipes/complexSearch?number=${numberOfRecipes}&sort=min-missing-ingredients&sortDirection=asc&instructionsRequired=true&ignorePantry=true&includeIngredients=${ingredients}&cuisine=${cuisine}&type=${meal}&apiKey=${apiKey}`;
+    const queryUrl = `https://api.spoonacular.com/recipes/complexSearch?number=${numberOfRecipes}&sort=min-missing-ingredients&sortDirection=asc&instructionsRequired=true&ignorePantry=true&includeIngredients=${ingredients}&cuisine=${cuisine}&type=${meal}&apiKey=${apiKey2}`;
     /// fetching of data
     setStatus("pending");
     fetch(queryUrl)
