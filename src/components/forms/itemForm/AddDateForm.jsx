@@ -27,7 +27,10 @@ const AddDateForm = ({
 
   let helperText;
   if (name === "Expiration Date" && categoryItem !== "") {
-    helperText = `Shelf life is ${shelfCtx.shelfLifeInFocus} day(s) from today!`;
+    helperText = `Shelf life is ${shelfCtx.shelfLifeInFocus} day(s), ${format(
+      addDays(new Date(), shelfCtx.shelfLifeInFocus),
+      "d/MM/yyyy"
+    )} `;
   } else {
     helperText = " ";
   }
