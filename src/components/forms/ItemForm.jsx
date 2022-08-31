@@ -96,10 +96,12 @@ const ItemForm = () => {
         <Grid container sx={{ padding: "0% 20%" }}>
           <AddDateForm
             name="Purchase Date"
+            purchaseDate={purchaseDateItem}
             handleDateChange={handlePurchaseDateChange}
           />
           <AddDateForm
             name="Expiration Date"
+            purchaseDate={purchaseDateItem}
             handleDateChange={handleExpiryDateChange}
             categoryItem={categoryItem}
           />

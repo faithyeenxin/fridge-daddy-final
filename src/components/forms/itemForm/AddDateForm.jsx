@@ -3,12 +3,16 @@ import { Grid, TextField } from "@mui/material";
 import ShelfContext from "../../../contextStore/shelfLife-context";
 import addDays from "date-fns/addDays";
 import format from "date-fns/format";
-const AddDateForm = ({ name, handleDateChange, categoryItem }) => {
+const AddDateForm = ({
+  name,
+  purchaseDate,
+  handleDateChange,
+  categoryItem,
+}) => {
   const shelfCtx = useContext(ShelfContext);
 
   let today = new Date();
-
-  let todayStr = format(today, "yyyy-MM-dd");
+  const todayStr = format(today, "yyyy-MM-dd");
   // let todayStr2 = format(today, "yyyy-MM-dd");
   const [todayStr2, setTodayStr2] = useState(format(today, "yyyy-MM-dd"));
 
