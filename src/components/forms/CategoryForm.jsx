@@ -29,6 +29,7 @@ let today = new Date();
 
 // https://api.spoonacular.com/food/ingredients/search?query=fruit&apiKey=5962ec749418426c81fa226be6317343
 const apiKey = "5962ec749418426c81fa226be6317343";
+const apiKey2 = `a15745668f894779b75adf57f9d76136`;
 
 const CategoryForm = () => {
   const shelfCtx = useContext(ShelfContext);
@@ -39,7 +40,7 @@ const CategoryForm = () => {
 
   const handleSubmit = () => {
     fetch(
-      `https://api.spoonacular.com/food/ingredients/search?query=${categoryInput}&apiKey=5962ec749418426c81fa226be6317343`
+      `https://api.spoonacular.com/food/ingredients/search?query=${categoryInput}&apiKey=${apiKey2}`
     )
       .then((res) => res.json())
       .then((data) => {

@@ -27,7 +27,8 @@ const RecipeLeftContentSection = ({ recipeList }) => {
 
   const numberOfRecipes = 16;
   const apiKey = `5962ec749418426c81fa226be6317343`;
-  const randomRecipeUrl = `https://api.spoonacular.com/recipes/random?number=6&apiKey=${apiKey}`;
+  const apiKey2 = `a15745668f894779b75adf57f9d76136`;
+  const randomRecipeUrl = `https://api.spoonacular.com/recipes/random?number=6&apiKey=${apiKey2}`;
 
   useEffect(() => {
     fetch(randomRecipeUrl)

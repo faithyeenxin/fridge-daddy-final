@@ -12,6 +12,7 @@ import AddCategory from "./pages/AddCategory";
 
 import DataProvider from "./contextStore/DataProvider";
 import ShelfLifeProvider from "./contextStore/ShelfLifeProvider";
+import Recipe from "./pages/Recipe";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Route path="/category" element={<AddCategory />} />
               <Route path="/user" element={<User />} />
               <Route path="/recipes" element={<Recipes />} />
+              <Route path="/recipes/:id" element={<Recipe />} />
             </Route>
           </Routes>
         </BrowserRouter>

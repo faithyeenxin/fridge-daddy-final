@@ -27,7 +27,8 @@ const CategoryDisplaySection = () => {
           variant="subtitle1"
           sx={{ color: "#455a40", fontStyle: "italic" }}
         >
-          The table is interactive!
+          The table is interactive - click on the table header to filter and
+          search!
         </Typography>
         <CategoryTable />
       </Container>
