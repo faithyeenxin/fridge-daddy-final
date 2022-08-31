@@ -12,7 +12,7 @@ const BaddiesContentSection = () => {
       }}
     >
       <Grid container justifyContent="center">
-        <Grid
+        {/* <Grid
           item
           s={12}
           md={2}
@@ -31,11 +31,11 @@ const BaddiesContentSection = () => {
               commercial haha
             </Typography>
           </Card>
-        </Grid>
+        </Grid> */}
         <Grid
           item
           s={12}
-          md={4}
+          md={5}
           sx={{
             margin: "2%",
           }}
@@ -52,7 +52,7 @@ const BaddiesContentSection = () => {
         <Grid
           item
           s={12}
-          md={4}
+          md={5}
           sx={{
             margin: "2%",
           }}

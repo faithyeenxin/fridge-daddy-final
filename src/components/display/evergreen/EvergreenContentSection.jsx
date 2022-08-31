@@ -19,7 +19,7 @@ const EvergreenContentSection = () => {
       }}
     >
       <Grid container justifyContent="center">
-        <Grid
+        {/* <Grid
           item
           s={12}
           md={4}
@@ -37,11 +37,11 @@ const EvergreenContentSection = () => {
               Possibly an API to show details of the items clicked can be here
             </Typography>
           </Card>
-        </Grid>
+        </Grid> */}
         <Grid
           item
           s={12}
-          md={7}
+          md={12}
           sx={{
             margin: "2%",
           }}
