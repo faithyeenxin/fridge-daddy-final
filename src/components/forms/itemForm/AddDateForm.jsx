@@ -1,19 +1,29 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Grid, TextField } from "@mui/material";
 import ShelfContext from "../../../contextStore/shelfLife-context";
 import addDays from "date-fns/addDays";
 import format from "date-fns/format";
 const AddDateForm = ({ name, handleDateChange, categoryItem }) => {
   const shelfCtx = useContext(ShelfContext);
+
   let today = new Date();
-  const todayStr = format(today, "yyyy-MM-dd");
+
+  let todayStr = format(today, "yyyy-MM-dd");
+  // let todayStr2 = format(today, "yyyy-MM-dd");
+  const [todayStr2, setTodayStr2] = useState(format(today, "yyyy-MM-dd"));
+
+  useEffect(() => {
+    if (shelfCtx.shelfLifeInFocus !== undefined) {
+      setTodayStr2(
+        format(addDays(new Date(), shelfCtx.shelfLifeInFocus), "yyyy-MM-dd")
+      );
+      console.log("new date created");
+    }
+  }, [shelfCtx.shelfLifeInFocus]);
 
   let helperText;
   if (name === "Expiration Date" && categoryItem !== "") {
-    helperText = `Shelf life is ${shelfCtx.shelfLifeInFocus} day(s), ${format(
-      addDays(new Date(), shelfCtx.shelfLifeInFocus),
-      "d/MM/yyyy"
-    )} `;
+    helperText = `Shelf life is ${shelfCtx.shelfLifeInFocus} day(s) from today!`;
   } else {
     helperText = " ";
   }
@@ -37,7 +47,7 @@ const AddDateForm = ({ name, handleDateChange, categoryItem }) => {
         label={name}
         helperText={helperText}
         type="date"
-        defaultValue={todayStr}
+        value={name === "Purchase Date" ? todayStr : todayStr2}
         InputLabelProps={{
           shrink: true,
         }}
