@@ -14,16 +14,16 @@ const AddDateForm = ({
   let today = new Date();
   const todayStr = format(today, "yyyy-MM-dd");
   // let todayStr2 = format(today, "yyyy-MM-dd");
-  const [todayStr2, setTodayStr2] = useState(format(today, "yyyy-MM-dd"));
+  // const [todayStr2, setTodayStr2] = useState(format(today, "yyyy-MM-dd"));
 
-  useEffect(() => {
-    if (shelfCtx.shelfLifeInFocus !== undefined) {
-      setTodayStr2(
-        format(addDays(new Date(), shelfCtx.shelfLifeInFocus), "yyyy-MM-dd")
-      );
-      console.log("new date created");
-    }
-  }, [shelfCtx.shelfLifeInFocus]);
+  // useEffect(() => {
+  //   if (shelfCtx.shelfLifeInFocus !== undefined) {
+  //     setTodayStr2(
+  //       format(addDays(new Date(), shelfCtx.shelfLifeInFocus), "yyyy-MM-dd")
+  //     );
+  //     console.log("new date created");
+  //   }
+  // }, [shelfCtx.shelfLifeInFocus]);
 
   let helperText;
   if (name === "Expiration Date" && categoryItem !== "") {
@@ -51,7 +51,7 @@ const AddDateForm = ({
         label={name}
         helperText={helperText}
         type="date"
-        value={name === "Purchase Date" ? todayStr : todayStr2}
+        defaultValue={todayStr}
         InputLabelProps={{
           shrink: true,
         }}
