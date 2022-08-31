@@ -28,7 +28,7 @@ const CategoryCard = ({ name, shelflife, imgUrl }) => {
         margin: "2%",
       }}
     >
-      <Card sx={{ display: "flex", maxWidth: 300, minWidth: 300, height: 150 }}>
+      <Card sx={{ display: "flex", maxWidth: 225, minWidth: 225, height: 150 }}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           {/* sx={{ flex: "1 0 auto" }} */}
           <CardContent sx={{ width: "80%", height: "100%" }}>
@@ -44,7 +44,7 @@ const CategoryCard = ({ name, shelflife, imgUrl }) => {
               {shelflife} days
             </Typography>
           </CardContent>
-          <Button>Remove this</Button>
+          {/* <Button>Remove this</Button> */}
         </Box>
         <CardMedia
           component="img"
