@@ -15,16 +15,20 @@ import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
-const navItems = [
-  "Home",
-  "Evergreen",
-  "Baddies",
-  "Category",
-  "Recipes",
-  "Search",
-  "User",
-  "Log Out",
-];
+
+// original with all the options ( search, user and log out)
+// const navItems = [
+//   "Home",
+//   "Evergreen",
+//   "Baddies",
+//   "Category",
+//   "Recipes",
+//   "Search",
+//   "User",
+//   "Log Out",
+// ];
+
+const navItems = ["Home", "Evergreen", "Baddies", "Category", "Recipes"];
 const Navigation = (props) => {
   const { window } = props;
   const navigate = useNavigate();
