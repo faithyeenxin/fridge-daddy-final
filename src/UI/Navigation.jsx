@@ -15,7 +15,7 @@ import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import format from "date-fns/format";
 const drawerWidth = 240;
-const today = format(new Date(), "Dd MMM yyyy");
+const today = format(new Date(), "dd MMM yyyy");
 // original with all the options ( search, user and log out)
 // const navItems = [
 //   "Home",
