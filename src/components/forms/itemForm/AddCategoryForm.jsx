@@ -76,7 +76,7 @@ const AddCategoryForm = ({ handleCategoryChange }) => {
                 ),
               }}
               onChange={(e) => {
-                setSearchText(e.target.value);
+                setSearchText(e.target.value.toLowerCase());
                 // setSearchText(e.target.value);
               }}
               onKeyDown={(e) => {

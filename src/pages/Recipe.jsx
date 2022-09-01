@@ -19,7 +19,7 @@ const Recipe = () => {
   const { id } = useParams();
   const apiKey = `5962ec749418426c81fa226be6317343`;
   const apiKey2 = `a15745668f894779b75adf57f9d76136`;
-  console.log(id);
+  // console.log(id);
   const recipeUrl = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey2}`;
   const [recipe, setRecipe] = useState([]);
   const [status, setStatus] = useState("idle");
@@ -29,7 +29,7 @@ const Recipe = () => {
     fetch(recipeUrl)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setRecipe(data);
         setStatus("resolved");
       });

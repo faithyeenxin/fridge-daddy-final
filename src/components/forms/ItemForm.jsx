@@ -56,7 +56,7 @@ const ItemForm = () => {
   };
 
   const handleCategoryChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setCategory(e.target.value);
   };
 

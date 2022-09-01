@@ -34,7 +34,7 @@ const RecipeLeftContentSection = ({ recipeList }) => {
     fetch(randomRecipeUrl)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.recipes);
+        // console.log(data.recipes);
         setRandomRecipe(data.recipes);
       })
       .catch((err) => {
@@ -66,7 +66,7 @@ const RecipeLeftContentSection = ({ recipeList }) => {
       .then((res) => res.json())
       .then((data) => {
         setRecipeQuery(data.results);
-        console.log(data.results);
+        // console.log(data.results);
         if (data.results.length > 0) {
           setStatus("resolved");
         } else {
