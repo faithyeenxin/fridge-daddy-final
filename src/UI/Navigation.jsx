@@ -13,9 +13,9 @@ import LunchDiningIcon from "@mui/icons-material/LunchDining";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-
+import format from "date-fns/format";
 const drawerWidth = 240;
-
+const today = format(new Date(), "Dd MMM yyyy");
 // original with all the options ( search, user and log out)
 // const navItems = [
 //   "Home",
@@ -43,6 +43,7 @@ const Navigation = (props) => {
       <Typography variant="h6" sx={{ my: 2, color: "#f93f23" }}>
         Fridge Daddy
       </Typography>
+
       <Divider />
       <List>
         {navItems.map((item) => (
@@ -50,11 +51,7 @@ const Navigation = (props) => {
             <ListItemButton
               sx={{ textAlign: "center" }}
               onClick={() => {
-                if (item !== "Log Out") {
-                  navigate(`/${item.toLowerCase()}`);
-                } else {
-                  console.log("Log Out has been clicked");
-                }
+                navigate(`/${item.toLowerCase()}`);
               }}
             >
               <ListItemText primary={item} sx={{ color: "#f93f23" }} />
@@ -87,6 +84,17 @@ const Navigation = (props) => {
             }}
           >
             Fridge Daddy
+          </Typography>
+          <Typography
+            onClick={() => {
+              navigate("/");
+            }}
+            sx={{
+              fontSize: 15,
+              paddingRight: 3,
+            }}
+          >
+            {today}
           </Typography>
           <IconButton
             aria-label="open drawer"
