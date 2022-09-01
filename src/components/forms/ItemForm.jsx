@@ -7,6 +7,10 @@ import AddQuantityForm from "./itemForm/AddQuantityForm";
 import Image from "/images/full_peach_opacity.jpg";
 import DataContext from "../../contextStore/data-context";
 import differenceInDays from "date-fns/differenceInDays";
+import addDays from "date-fns/addDays";
+import format from "date-fns/format";
+import parseISO from "date-fns/parseISO";
+// import ShelfContext from "../../contextStore/shelfLife-context";
 
 const buttonSx = {
   backgroundColor: "#f93f23",
@@ -26,6 +30,13 @@ const ItemForm = () => {
   const [categoryItem, setCategory] = useState("");
   const [purchaseDateItem, setPurchaseDate] = useState("");
   const [expiryDateItem, setExpiryDate] = useState("");
+
+  //
+  let today = new Date();
+  const todayStr = format(today, "yyyy-MM-dd");
+
+  const [displayPurchaseDate, setDisplayPurchaseDate] = useState(todayStr);
+  const [displayExpiryDate, setDisplayExpiryDate] = useState(todayStr);
 
   const dataCtx = useContext(DataContext);
   const addToList = () => {
@@ -96,14 +107,21 @@ const ItemForm = () => {
         <Grid container sx={{ padding: "0% 20%" }}>
           <AddDateForm
             name="Purchase Date"
-            purchaseDate={purchaseDateItem}
             handleDateChange={handlePurchaseDateChange}
+            categoryItem={categoryItem}
+            displayPurchaseDate={displayPurchaseDate}
+            setDisplayPurchaseDate={setDisplayPurchaseDate}
+            displayExpiryDate={displayExpiryDate}
+            setDisplayExpiryDate={setDisplayExpiryDate}
           />
           <AddDateForm
             name="Expiration Date"
-            purchaseDate={purchaseDateItem}
             handleDateChange={handleExpiryDateChange}
             categoryItem={categoryItem}
+            displayPurchaseDate={displayPurchaseDate}
+            setDisplayPurchaseDate={setDisplayPurchaseDate}
+            displayExpiryDate={displayExpiryDate}
+            setDisplayExpiryDate={setDisplayExpiryDate}
           />
         </Grid>
         <Button variant="primary" sx={buttonSx} onClick={addToList}>

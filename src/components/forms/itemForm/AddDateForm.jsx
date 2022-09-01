@@ -3,27 +3,42 @@ import { Grid, TextField } from "@mui/material";
 import ShelfContext from "../../../contextStore/shelfLife-context";
 import addDays from "date-fns/addDays";
 import format from "date-fns/format";
+import parseISO from "date-fns/parseISO";
 const AddDateForm = ({
   name,
-  purchaseDate,
   handleDateChange,
   categoryItem,
+  displayPurchaseDate,
+  setDisplayPurchaseDate,
+  displayExpiryDate,
+  setDisplayExpiryDate,
 }) => {
-  const shelfCtx = useContext(ShelfContext);
-
   let today = new Date();
   const todayStr = format(today, "yyyy-MM-dd");
+  const shelfCtx = useContext(ShelfContext);
+  useEffect(() => {
+    if (name === "Expiration Date" && categoryItem !== "") {
+      const newExpiryDate = format(
+        addDays(parseISO(displayPurchaseDate), shelfCtx.shelfLifeInFocus),
+        "yyyy-MM-dd"
+      );
+      setDisplayExpiryDate(newExpiryDate);
+    } else if (name === "Purchase Date" && categoryItem !== "") {
+      // console.log(displayPurchaseDate);
+      const newExpiryDate = format(
+        addDays(parseISO(displayPurchaseDate), shelfCtx.shelfLifeInFocus),
+        "yyyy-MM-dd"
+      );
+      setDisplayExpiryDate(newExpiryDate);
+    }
+  }, [categoryItem, displayPurchaseDate]);
 
   let helperText;
   if (name === "Expiration Date" && categoryItem !== "") {
-    helperText = `Shelf life is ${shelfCtx.shelfLifeInFocus} day(s), ${format(
-      addDays(new Date(), shelfCtx.shelfLifeInFocus),
-      "d/MM/yyyy"
-    )} `;
+    helperText = `Shelf life is ${shelfCtx.shelfLifeInFocus} day(s)`;
   } else {
     helperText = " ";
   }
-  console.log(shelfCtx.shelfLifeInFocus);
 
   return (
     <Grid
@@ -44,12 +59,15 @@ const AddDateForm = ({
         helperText={helperText}
         type="date"
         defaultValue={todayStr}
+        value={name === "Expiration Date" ? displayExpiryDate : undefined}
         InputLabelProps={{
           shrink: true,
         }}
-        // InputProps={{ min: minDate }} //"2022-06-22"
         sx={{ margin: "10px" }}
-        onChange={handleDateChange}
+        onChange={(e) => {
+          handleDateChange(e);
+          name === "Purchase Date" && setDisplayPurchaseDate(e.target.value);
+        }}
       />
     </Grid>
   );

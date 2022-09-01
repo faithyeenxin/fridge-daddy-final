@@ -24,8 +24,8 @@ const shelfLifeReducer = (state, action) => {
     case "ADD_SHELF":
       newShelfList = state.shelfData.concat(action.item);
       newShelfLifeInFocus = state.shelfLifeInFocus;
-      console.log("new shelf life list");
-      console.log(newShelfList);
+      // console.log("new shelf life list");
+      // console.log(newShelfList);
       createRecord(action.item);
       return {
         shelfData: newShelfList,
@@ -33,13 +33,13 @@ const shelfLifeReducer = (state, action) => {
       };
 
     case "DISPLAY_SHELF":
-      console.log(action.item.target.value);
+      // console.log(action.item.target.value);
       // to check through shelf life data and return the shelf life day
       const result = state.shelfData.filter(
         (item) => item.name === action.item.target.value
       );
       const firstResult = result[0];
-      console.log(firstResult.shelflife);
+      // console.log(firstResult.shelflife);
       newShelfList = state.shelfData;
       newShelfLifeInFocus = firstResult.shelflife;
       return {
@@ -97,7 +97,7 @@ const createRecord = async (record) => {
     .all();
   if (records.length === 0) {
     const createdRecord = await shelfLifeTable.create(item);
-    console.log(createdRecord);
+    // console.log(createdRecord);
   } else {
     console.log(`record cannot be created as item (${item.name}) exists`);
   }
@@ -124,16 +124,17 @@ const ShelfLifeProvider = (props) => {
   );
 
   const addShelfDataHandler = (item) => {
-    console.log("adding to shelf");
+    // console.log("adding to shelf");
     dispatchShelfAction({ type: "ADD_SHELF", item: item });
   };
 
   const removeShelfDataHandler = () => {
+    // Have not worked on this yet
     console.log("removing from shelf");
   };
 
   const displayShelfDataHandler = (item) => {
-    console.log("displaying shelf life");
+    // console.log("displaying shelf life");
     dispatchShelfAction({ type: "DISPLAY_SHELF", item: item });
   };
 
