@@ -28,10 +28,7 @@ const ItemForm = () => {
   const [foodItem, setFood] = useState("");
   const [quantityItem, setQuantity] = useState("");
   const [categoryItem, setCategory] = useState("");
-  const [purchaseDateItem, setPurchaseDate] = useState("");
-  const [expiryDateItem, setExpiryDate] = useState("");
 
-  //
   let today = new Date();
   const todayStr = format(today, "yyyy-MM-dd");
 
@@ -41,22 +38,20 @@ const ItemForm = () => {
   const dataCtx = useContext(DataContext);
   const addToList = () => {
     const item = {
-      id: `${foodItem}-${categoryItem}-${purchaseDateItem}-${expiryDateItem}-${Math.random()}`,
+      id: `${foodItem}-${categoryItem}-${displayPurchaseDate}-${displayExpiryDate}-${Math.random()}`,
       item: foodItem,
       quantity: quantityItem,
       category: categoryItem,
-      purchaseDate: purchaseDateItem,
-      expiryDate: expiryDateItem,
+      purchaseDate: displayPurchaseDate,
+      expiryDate: displayExpiryDate,
     };
-    if (differenceInDays(new Date(expiryDateItem), new Date()) > 0) {
+
+    if (differenceInDays(new Date(displayExpiryDate), new Date()) > 0) {
       dataCtx.addEvergreen(item);
     } else {
       dataCtx.addRotten(item);
     }
   };
-
-  /////- to send function to child
-  /////- addCategoryForm so that they can pass back the info regarding shelf life to expiration date form
 
   const handleFoodChange = (e) => {
     setFood(e.target.value.toLowerCase());
@@ -69,14 +64,6 @@ const ItemForm = () => {
   const handleCategoryChange = (e) => {
     // console.log(e.target.value);
     setCategory(e.target.value);
-  };
-
-  const handlePurchaseDateChange = (e) => {
-    setPurchaseDate(e.target.value);
-  };
-
-  const handleExpiryDateChange = (e) => {
-    setExpiryDate(e.target.value);
   };
 
   return (
@@ -107,7 +94,6 @@ const ItemForm = () => {
         <Grid container sx={{ padding: "0% 20%" }}>
           <AddDateForm
             name="Purchase Date"
-            handleDateChange={handlePurchaseDateChange}
             categoryItem={categoryItem}
             displayPurchaseDate={displayPurchaseDate}
             setDisplayPurchaseDate={setDisplayPurchaseDate}
@@ -116,7 +102,6 @@ const ItemForm = () => {
           />
           <AddDateForm
             name="Expiration Date"
-            handleDateChange={handleExpiryDateChange}
             categoryItem={categoryItem}
             displayPurchaseDate={displayPurchaseDate}
             setDisplayPurchaseDate={setDisplayPurchaseDate}

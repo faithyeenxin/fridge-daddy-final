@@ -6,7 +6,6 @@ import format from "date-fns/format";
 import parseISO from "date-fns/parseISO";
 const AddDateForm = ({
   name,
-  handleDateChange,
   categoryItem,
   displayPurchaseDate,
   setDisplayPurchaseDate,
@@ -65,7 +64,6 @@ const AddDateForm = ({
         }}
         sx={{ margin: "10px" }}
         onChange={(e) => {
-          handleDateChange(e);
           name === "Purchase Date" && setDisplayPurchaseDate(e.target.value);
           name === "Expiration Date" && setDisplayExpiryDate(e.target.value);
         }}
